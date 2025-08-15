@@ -12,22 +12,25 @@
     "@tsconfig/node20": "^20.1.6",
     "@types/node": "^24.2.1",
     "@types/sqlite3": "^5.1.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
   },
   "dependencies": {
     "@fastify/cors": "^11.1.0",
+    "bcrypt": "^5.1.0",
     "fastify": "^5.5.0",
-    "sqlite3": "^5.1.7",
-    "bcrypt": "^5.1.0"
+    "sqlite3": "^5.1.7"
   },
   "scripts": {
-  "dev": "node dist/backend/server.js",
-  "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/index.html dist/frontend/",
-  "build:backend": "tsc -p tsconfig.backend.json",
-  "build": "npm run build:backend && npm run build:frontend",
-  "clean": "rm -rf dist"
-}
-
+    "dev": "node dist/backend/server.js",
+    "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/index.html dist/frontend/",
+    "build:backend": "tsc -p tsconfig.backend.json",
+  "build:tw": "tailwindcss -c tailwind.config.js -i frontend/tailwind.css -o frontend/tw.generated.css --minify",
+    "build": "npm run build:backend && npm run build:frontend",
+    "clean": "rm -rf dist"
+  }
 }
