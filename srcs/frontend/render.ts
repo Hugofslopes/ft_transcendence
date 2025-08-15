@@ -1,4 +1,4 @@
-export function renderAuthModal() {
+export function renderAuthModal(showOnly: 'login' | 'register') {
   // Create modal overlay
   const modalOverlay = document.createElement('div');
   modalOverlay.className = 'modal-overlay';
@@ -14,7 +14,7 @@ export function renderAuthModal() {
         <button class="auth-tab active" data-tab="login">Login</button>
         <button class="auth-tab" data-tab="register">Register</button>
       </div>
-      
+  
       <!-- Login Form -->
       <form id="login-form" class="auth-form active">
         <label>
@@ -27,7 +27,7 @@ export function renderAuthModal() {
         </label>
         <button type="submit">Login</button>
       </form>
-      
+
       <!-- Registration Form -->
       <form id="registration-form" class="auth-form">
         <label>
@@ -54,6 +54,7 @@ export function renderAuthModal() {
   `;
 
   // Add to body
+
   document.body.appendChild(modalOverlay);
 
   // Get elements
@@ -64,7 +65,8 @@ export function renderAuthModal() {
   const modalTitle = document.getElementById('modal-title') as HTMLHeadingElement;
   const authTabs = document.querySelectorAll('.auth-tab') as NodeListOf<HTMLButtonElement>;
   const authForms = document.querySelectorAll('.auth-form') as NodeListOf<HTMLFormElement>;
-
+  document.getElementById('login-form')?.setAttribute('style', 'display:block; color:red;');
+  document.getElementById('registration-form')?.setAttribute('style', 'display:none; color:red;');
   // Close modal function
   const closeModal = () => {
     document.body.removeChild(modalOverlay);
@@ -77,9 +79,17 @@ export function renderAuthModal() {
       tab.classList.toggle('active', tab.dataset.tab === tabName);
     });
     
-    // Update forms
+    // Update forms - handle the different form ID naming
     authForms.forEach(form => {
-      form.classList.toggle('active', form.id === `${tabName}-form`);
+      if (tabName === 'login') {
+        document.getElementById('login-form')?.setAttribute('style', 'display:block; color:red;');
+        document.getElementById('registration-form')?.setAttribute('style', 'display:none; color:red;');
+        form.classList.toggle('active', form.id === 'login-form');
+      } else if (tabName === 'register') {
+        document.getElementById('login-form')?.setAttribute('style', 'display:none; color:red;');
+        document.getElementById('registration-form')?.setAttribute('style', 'display:block; color:red;');
+        form.classList.toggle('active', form.id === 'registration-form');
+      }
     });
     
     // Update title
@@ -87,9 +97,7 @@ export function renderAuthModal() {
     
     // Clear result
     result.innerText = '';
-  };
-
-  // Tab click events
+  };  // Tab click events
   authTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       switchTab(tab.dataset.tab!);
@@ -134,7 +142,6 @@ export function renderAuthModal() {
       const data = await response.json();
       result.innerText = `✅ Login successful: Welcome ${data.username || username}`;
       loginForm.reset();
-      
       // Auto-close modal after successful login
       setTimeout(() => {
         closeModal();

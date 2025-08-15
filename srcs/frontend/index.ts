@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (playButton) {
     playButton.addEventListener("click", () => {
       console.log("Play");
-      renderAuthModal();
+      renderAuthModal('login');
     });
     console.log('Play button listener added');
   } else {

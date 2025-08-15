@@ -27,10 +27,10 @@
   },
   "scripts": {
     "dev": "node dist/backend/server.js",
-    "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/index.html dist/frontend/",
+    "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/index.html dist/frontend/ && cp frontend/*.css dist/frontend/ && cp -r frontend/assets dist/frontend/",
     "build:backend": "tsc -p tsconfig.backend.json",
-  "build:tw": "tailwindcss -c tailwind.config.js -i frontend/tailwind.css -o frontend/tw.generated.css --minify",
-    "build": "npm run build:backend && npm run build:frontend",
+    "build:tw": "tailwindcss -c tailwind.config.js -i frontend/tailwind.css -o frontend/tw.generated.css --minify",
+    "build": "npm run build:backend && npm run build:frontend && npm run build:tw",
     "clean": "rm -rf dist"
   }
 }
