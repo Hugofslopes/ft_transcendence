@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded, setting up button listeners...');
   
   // Get buttons by their classes
-  const playButton = document.querySelector('.btn-play') as HTMLButtonElement;
-  const settingsButton = document.querySelector('.btn-settings') as HTMLButtonElement;
-  const listUsersButton = document.querySelector('.btn-list-users') as HTMLButtonElement;
-  const deleteUserButton = document.querySelector('.btn-delete-user') as HTMLButtonElement;
+  const playButton = document.querySelector('.gris-btn-top') as HTMLButtonElement;
+  const settingsButton = document.querySelector('.gris-btn-bottom') as HTMLButtonElement;
+  const listUsersButton = document.querySelector('.gris-btn-list') as HTMLButtonElement;
+  // const deleteUserButton = document.querySelector('.btn-delete-user') as HTMLButtonElement;
 
   // Add event listeners for console logging
   if (playButton) {
@@ -41,13 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('List Users button not found');
   }
 
-  if (deleteUserButton) {
-    deleteUserButton.addEventListener("click", () => {
-      console.log("Delete User");
-      renderDeleteUserModal();
-    });
-    console.log('Delete User button listener added');
-  } else {
-    console.log('Delete User button not found');
-  }
+
 });

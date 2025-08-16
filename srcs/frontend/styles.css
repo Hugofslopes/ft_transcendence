@@ -1,3 +1,270 @@
+/* Montserrat font utility class */
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+/* Make select fields in forms match input styling */
+.modal-content select,
+.auth-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background: #fff;
+  color: #222;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.modal-content select:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+  /* ...existing code... */
+@media (max-width: 600px) {
+  .gris-circles-inner,
+  .gris-menu-squares,
+  .gris-circles-bg {
+    display: none !important;
+  }
+  .gris-menu-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    width: 100vw !important;
+    height: auto !important;
+    gap: 16px !important;
+    z-index: 2;
+    pointer-events: auto;
+    margin: 0 auto !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  .gris-btn {
+    position: relative !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    width: 80vw !important;
+    max-width: 220px !important;
+    min-width: 80px !important;
+    left: 0 !important;
+    top: 0 !important;
+  font-size: 0.9rem !important;
+  padding: 7px 4px !important;
+  }
+}
+/* Responsive button positions using container width/height */
+.gris-btn-top {
+  left: 50%;
+  top: calc(5%);
+  transform: translate(-50%, 0);
+}
+.gris-btn-right {
+  left: calc(95%);
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+.gris-btn-bottom {
+  left: 50%;
+  top: calc(95%);
+  transform: translate(-50%, -100%);
+}
+.gris-btn-left {
+  left: calc(5%);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+  .gris-menu-center-circles {
+    width: clamp(220px, 80vw, 95vw);
+    height: clamp(220px, 80vw, 95vw);
+    max-width: clamp(220px, 85vw, 98vw);
+    max-height: clamp(220px, 85vw, 98vw);
+  }
+  .gris-circles-inner {
+    width: 100%;
+    height: 100%;
+  }
+  .gris-btn {
+    font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+    padding: clamp(4px, 1.5vw, 12px) clamp(10px, 4vw, 32px);
+    min-width: 60px;
+    max-width: 40vw;
+    white-space: nowrap;
+    border-width: 1.5px;
+  }
+  .gris-btn-top {
+    left: 50%;
+    top: 3%;
+    transform: translate(-50%, 0);
+  }
+  .gris-btn-right {
+    left: 97%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+  }
+  .gris-btn-bottom {
+    left: 50%;
+    top: 97%;
+    transform: translate(-50%, -100%);
+  }
+  .gris-btn-left {
+    left: 3%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+@media (max-width: 500px), (max-height: 500px) {
+  .gris-menu-center-circles {
+    width: clamp(120px, 90vw, 98vw);
+    height: clamp(120px, 90vw, 98vw);
+    max-width: 98vw;
+    max-height: 98vw;
+  }
+  .gris-btn {
+    font-size: clamp(0.6rem, 3vw, 0.9rem);
+    padding: clamp(2px, 1vw, 8px) clamp(6px, 2vw, 16px);
+    min-width: 40px;
+    max-width: 60vw;
+    border-width: 1px;
+  }
+}
+/* GRIS-like main menu styles */
+/* GRIS-like main menu full-page background */
+/* GRIS-like watercolor gradient background */
+
+
+.gris-menu-bg {
+  background:
+    linear-gradient(180deg, rgba(227,230,250,0.85) 0%, rgba(182,198,227,0.7) 40%, rgba(126,208,246,0.6) 80%, rgba(227,182,227,0.7) 100%),
+    url('./assets/background.png') center center / cover no-repeat;
+  background-blend-mode: lighten, normal;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Watercolor texture overlay using SVG noise */
+
+.gris-bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.18;
+  background: url('data:image/svg+xml;utf8,<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><filter id="noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/></filter><rect width="400" height="400" filter="url(%23noise)"/></svg>');
+  background-size: cover;
+  mix-blend-mode: multiply;
+}
+
+.gris-circles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gris-menu-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.gris-menu-center-circles {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.gris-circles-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.gris-menu-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gris-btn {
+  position: absolute;
+  background: #fff;
+  color: #222;
+  border: 2px solid #222;
+  border-radius: 100px;
+  font-family: Montserrat;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  pointer-events: auto;
+}
+.gris-btn:hover {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+@media (max-width: 700px) {
+  .gris-menu-center-circles {
+    width: 95vw;
+    height: 95vw;
+    max-width: 98vw;
+    max-height: 98vw;
+  }
+  .gris-circles-inner {
+    width: 100%;
+    height: 100%;
+  }
+}
 /* Global resets */
 html {
   overflow-x: hidden; /* prevent horizontal scroll */

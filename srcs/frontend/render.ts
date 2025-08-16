@@ -40,7 +40,13 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
         </label>
         <label>
           Team:
-          <input type="text" id="register-team" required />
+          <select id="register-team" required>
+            <option value="">Select a team</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Yellow">Yellow</option>
+          </select>
         </label>
         <label>
           Password:
@@ -203,7 +209,13 @@ export function renderRegistrationModal() {
         </label>
         <label>
           Team:
-          <input type="text" id="team" required />
+          <select id="team" required>
+            <option value="">Select a team</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Yellow">Yellow</option>
+          </select>
         </label>
         <label>
           Password:
@@ -291,7 +303,13 @@ export function renderRegistrationForm(container: HTMLElement) {
       </label>
       <label>
         Team:
-        <input type="text" id="team" required />
+        <select id="team" required>
+          <option value="">Select a team</option>
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Green">Green</option>
+          <option value="Yellow">Yellow</option>
+        </select>
       </label>
       <label>
         Password:
@@ -389,6 +407,7 @@ export function renderUserListModal() {
               <th style="padding: 8px; text-align: left;">Name</th>
               <th style="padding: 8px; text-align: left;">Username</th>
               <th style="padding: 8px; text-align: left;">Team</th>
+              <th style="padding: 8px; text-align: left;">password</th>
             </tr>
           </thead>
           <tbody>
@@ -398,6 +417,7 @@ export function renderUserListModal() {
                 <td style="padding: 8px;">${user.name || 'N/A'}</td>
                 <td style="padding: 8px;">${user.username || 'N/A'}</td>
                 <td style="padding: 8px;">${user.team || 'N/A'}</td>
+                <td style="padding: 8px;">${user.password || 'N/A'}</td>
               </tr>
             `).join('')}
           </tbody>
