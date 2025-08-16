@@ -46,7 +46,7 @@ db.serialize(() => {
   // hacktivists table
 db.serialize(() => {
   db.run(`
-  CREATE TABLE hacktivists (
+  CREATE TABLE IF NOT EXISTS hacktivists (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     members TEXT NOT NULL,
     victories INTEGER DEFAULT 0,
@@ -60,7 +60,7 @@ db.serialize(() => {
 // Bug busters table
 db.serialize(() => {
   db.run(`
-  CREATE TABLE bug_busters (
+  CREATE TABLE IF NOT EXISTS bug_busters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     members TEXT NOT NULL,
     victories INTEGER DEFAULT 0,
@@ -74,7 +74,7 @@ db.serialize(() => {
 // Logic league table
 db.serialize(() => {
   db.run(`
-  CREATE TABLE logic_league (
+  CREATE TABLE IF NOT EXISTS logic_league (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     members TEXT NOT NULL,
     victories INTEGER DEFAULT 0,
@@ -88,7 +88,7 @@ db.serialize(() => {
 // Code allience table
 db.serialize(() => {
   db.run(`
-  CREATE TABLE code_allience (
+  CREATE TABLE IF NOT EXISTS code_allience (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     members TEXT NOT NULL,
     victories INTEGER DEFAULT 0,

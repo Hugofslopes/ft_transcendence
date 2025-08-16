@@ -1,0 +1,689 @@
+/* Montserrat font utility class */
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+/* Make select fields in forms match input styling */
+.modal-content select,
+.auth-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background: #fff;
+  color: #222;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.modal-content select:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+  /* ...existing code... */
+@media (max-width: 600px) {
+  .gris-circles-inner,
+  .gris-menu-squares,
+  .gris-circles-bg {
+    display: none !important;
+  }
+  .gris-menu-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    width: 100vw !important;
+    height: auto !important;
+    gap: 16px !important;
+    z-index: 2;
+    pointer-events: auto;
+    margin: 0 auto !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  .gris-btn {
+    position: relative !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    width: 80vw !important;
+    max-width: 220px !important;
+    min-width: 80px !important;
+    left: 0 !important;
+    top: 0 !important;
+  font-size: 0.9rem !important;
+  padding: 7px 4px !important;
+  }
+}
+/* Responsive button positions using container width/height */
+.gris-btn-top {
+  left: 50%;
+  top: calc(-3%);
+  transform: translate(-50%, 0);
+}
+.gris-btn-right {
+  left: calc(110%);
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+.gris-btn-bottom {
+  left: 50%;
+  top: calc(103%);
+  transform: translate(-50%, -100%);
+}
+.gris-btn-left {
+  left: calc(-10%);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+  .gris-menu-center-circles {
+    width: clamp(220px, 80vw, 95vw);
+    height: clamp(220px, 80vw, 95vw);
+    max-width: clamp(220px, 85vw, 98vw);
+    max-height: clamp(220px, 85vw, 98vw);
+  }
+  .gris-circles-inner {
+    width: 100%;
+    height: 100%;
+  }
+  .gris-btn {
+    font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+    padding: clamp(4px, 1.5vw, 12px) clamp(10px, 4vw, 32px);
+    min-width: 60px;
+    max-width: 40vw;
+    white-space: nowrap;
+    border-width: 1.5px;
+  }
+  .gris-btn-top {
+    left: 50%;
+    top: 3%;
+    transform: translate(-50%, 0);
+  }
+  .gris-btn-right {
+    left: 97%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+  }
+  .gris-btn-bottom {
+    left: 50%;
+    top: 97%;
+    transform: translate(-50%, -100%);
+  }
+  .gris-btn-left {
+    left: 3%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+@media (max-width: 500px), (max-height: 500px) {
+  .gris-menu-center-circles {
+    width: clamp(120px, 90vw, 98vw);
+    height: clamp(120px, 90vw, 98vw);
+    max-width: 98vw;
+    max-height: 98vw;
+  }
+  .gris-btn {
+    font-size: clamp(0.6rem, 3vw, 0.9rem);
+    padding: clamp(2px, 1vw, 8px) clamp(6px, 2vw, 16px);
+    min-width: 40px;
+    max-width: 60vw;
+    border-width: 1px;
+  }
+}
+/* GRIS-like main menu styles */
+/* GRIS-like main menu full-page background */
+/* GRIS-like watercolor gradient background */
+
+
+.gris-menu-bg {
+  background:
+    linear-gradient(180deg, rgba(227,230,250,0.85) 0%, rgba(182,198,227,0.7) 40%, rgba(126,208,246,0.6) 80%, rgba(227,182,227,0.7) 100%),
+    url('./assets/background.png') center center / cover no-repeat;
+  background-blend-mode: lighten, normal;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Watercolor texture overlay using SVG noise */
+
+.gris-bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.18;
+  background: url('data:image/svg+xml;utf8,<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><filter id="noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/></filter><rect width="400" height="400" filter="url(%23noise)"/></svg>');
+  background-size: cover;
+  mix-blend-mode: multiply;
+}
+
+.gris-circles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gris-menu-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.gris-menu-center-circles {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.gris-circles-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.gris-menu-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gris-btn {
+  position: absolute;
+  background: #fff;
+  color: #222;
+  border: 2px solid #222;
+  border-radius: 100px;
+  font-family: Montserrat;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  pointer-events: auto;
+}
+.gris-btn:hover {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+@media (max-width: 700px) {
+  .gris-menu-center-circles {
+    width: 95vw;
+    height: 95vw;
+    max-width: 98vw;
+    max-height: 98vw;
+  }
+  .gris-circles-inner {
+    width: 100%;
+    height: 100%;
+  }
+}
+/* Global resets */
+html {
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll */
+  min-height: 100vh; /* ensure full viewport height */
+  width: 100vw;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Mobile-specific scroll prevention */
+@media (max-width: 1023px) {
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+  }
+  /* Prevent zooming and scrolling on mobile */
+  * {
+    max-width: 100%;
+  }
+}
+
+/* Header */
+.site-header {
+  background-color: #1e293b; /* slate-800 */
+  color: #ffffff;
+  padding: 35.5px 0;
+  width: 100%;
+  max-width: 100vw;
+  display: block;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer {
+  background-color: #1e293b; /* slate-800 */
+  color: #ffffff;
+  padding: 35.5px 0;
+  width: 100%;
+  max-width: 100vw;
+  display: block;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-title {
+  margin: 0;
+  padding-left: 16px;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; /* Take all available space */
+  padding: 0; /* Remove padding to eliminate gaps */
+  justify-content: center;
+  margin: 0; /* Ensure no margins */
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 0; /* Remove margin since it's now inside pillars-row */
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 120px;
+}
+
+.btn-play {
+  background-color: #10b981; /* emerald-500 */
+  color: white;
+}
+
+.btn-play:hover {
+  background-color: #059669; /* emerald-600 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-settings {
+  background-color: #6b7280; /* gray-500 */
+  color: white;
+}
+
+.btn-settings:hover {
+  background-color: #4b5563; /* gray-600 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-family: monospace;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* Auth Tabs */
+.auth-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  font-family: monospace;
+  font-weight: 600;
+  cursor: pointer;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.auth-tab:hover {
+  color: #374151;
+  background-color: #f9fafb;
+}
+
+.auth-tab.active {
+  color: #10b981;
+  border-bottom-color: #10b981;
+}
+
+/* Auth Forms */
+.auth-form {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: monospace;
+  font-weight: 600;
+  color: #374151;
+}
+
+.modal-content input {
+  padding: 10px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-family: monospace;
+  transition: border-color 0.2s ease;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.modal-content button[type="submit"] {
+  padding: 12px 20px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+#result {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+/* Covers 95%+ of common devices */
+
+/* Tablets (768px+) - iPad, Android tablets */
+@media (min-width: 768px) {
+  .site-header {
+    padding: 24px 0;
+  }
+  .site-title {
+    font-size: 22px;
+    padding-left: 24px;
+  }
+  .btn {
+    padding: 14px 28px;
+    font-size: 18px;
+    min-width: 140px;
+  }
+  .nav-buttons {
+    gap: 20px;
+  }
+}
+
+/* Desktop (1024px+) - Laptops, desktops, show pillars */
+@media (min-width: 1024px) {
+  .site-header {
+    padding: 28px 0;
+  }
+  .site-title {
+    font-size: 24px;
+    padding-left: 32px;
+  }
+  .btn {
+    padding: 16px 32px;
+    font-size: 18px;
+    min-width: 160px;
+  }
+  .nav-buttons {
+    gap: 24px;
+  }
+}
+
+/* Volute (spiral) SVG */
+.volute-svg {
+  display: block;
+  color: #f4770f; /* currentColor for strokes and band */
+  width: clamp(180px, 35vw, 360px);   /* fluid width */
+  height: auto;   /* preserve aspect ratio */
+}
+.volute-path {
+  stroke: currentColor;
+  stroke-width: 6;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: -22; /* shifts stroke start a bit */
+}
+.volute-band {
+  fill: currentColor;
+}
+
+/* External SVG object sizing */
+.pillar-object {
+  width: clamp(13.5vw, 38vw, 20px);   /* fluid width for responsiveness */
+  height: auto;   /* keep aspect ratio */
+  max-width: 100%;
+  display: none;
+  margin-top: 0;  /* ensure no gap above */
+}
+
+/* Row to place pillars on opposite sides */
+.pillars-row {
+  width: 100%;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Space pillars apart with buttons in center */
+  flex-wrap: nowrap; /* Don't wrap, keep in line */
+  gap: clamp(20px, 4vw, 40px); /* Space between elements */
+  padding: 0 clamp(8px, 3vw, 24px);
+  box-sizing: border-box;
+  margin: 0; /* Ensure no margins */
+}
+
+/* Breakpoints */
+
+/* Default: Hide pillars */
+.pillar-object {
+  display: none;
+}
+
+/* Desktop screens with standard width */
+@media (min-width: 1024px) {
+  .pillar-object {
+    display: block;
+  }
+  .pillars-row {
+    justify-content: space-between; /* pillars on opposite sides */
+  }
+}
+
+/* Ultrawide screens (21:9+) - more spacing */
+@media (min-width: 1024px) and (min-aspect-ratio: 21/9) {
+  .pillars-row {
+    justify-content: space-around;
+    gap: clamp(40px, 6vw, 100px);
+  }
+  .pillar-object {
+    width: clamp(200px, 14vw, 280px);
+  }
+}
+
+/* Mobile and tablets - hide pillars */
+@media (max-width: 1023px) {
+  .pillar-object {
+    display: none !important;
+  }
+}
+
+/* High-resolution displays - optimize for crisp rendering */
+@media (min-width: 1024px) and (min-resolution: 2dppx) {
+  .pillar-object {
+    image-rendering: crisp-edges;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .site-header {
+    padding: 16px 0; /* slightly tighter on small screens */
+  }
+}

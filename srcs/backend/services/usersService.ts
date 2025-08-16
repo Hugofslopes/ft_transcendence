@@ -62,3 +62,18 @@ export async function deleteUser(id: number): Promise<void> {
 const query = `DELETE FROM users WHERE id = ?`;
 await runAsync(query, [id]);
 }
+
+// 🔐 Login user (validate credentials)
+export async function loginUser(username: string, password: string): Promise<User | null> {
+const user = await getUserByUsername(username);
+if (!user) {
+	return null; // User not found
+}
+const isPasswordValid = await bcrypt.compare(password, user.password);
+if (!isPasswordValid) {
+	return null; // Invalid password
+}
+// Return user without password for security
+const { password: _, ...userWithoutPassword } = user;
+return userWithoutPassword as User;
+}

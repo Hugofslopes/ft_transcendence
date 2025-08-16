@@ -1,10 +1,185 @@
-<body>
-  <h1>PONG!!!!</h1>
-  <button id="play-btn">Play</button>
-  <button id="settings-btn">Player Settings</button>
-  <button id="tournaments-btn">Tournaments</button>
-  <button id="teams-btn">Teams</button>
-  <div id="app"></div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fastify Frontend</title>
+  <link href="./tw.generated.css" rel="stylesheet">
+  <link href="./styles.css" rel="stylesheet">
+  <!-- Montserrat font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 0;">
+  <div class="gris-bg-noise"></div>
+  <canvas id="orbs-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:5;"></canvas>
+  
 
-  <script type="module" src="index.js" defer></script>
+<!-- Page Container -->
+    <!-- HEADER block with solid color and left-aligned text -->
+    <!-- MAIN CONTENT: GRIS-like circular menu -->
+    <main class="main-content gris-menu-bg">
+      <svg class="gris-circles-bg" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <circle cx="960" cy="540" r="500" stroke="#bbb" stroke-width="2" />
+        <circle cx="960" cy="540" r="400" stroke="#bbb" stroke-width="2" />
+        <circle cx="960" cy="540" r="320" stroke="#bbb" stroke-width="2" />
+        <circle cx="960" cy="540" r="250" stroke="#bbb" stroke-width="2" />
+        <circle cx="960" cy="540" r="180" stroke="#bbb" stroke-width="2" />
+        <circle cx="960" cy="540" r="120" stroke="#bbb" stroke-width="2" />
+        <!-- Decorative off-center circles -->
+        <circle cx="300" cy="200" r="80" stroke="#ddd" stroke-width="1.5" />
+        <circle cx="1700" cy="900" r="60" stroke="#ddd" stroke-width="1.5" />
+        <circle cx="400" cy="900" r="40" stroke="#eee" stroke-width="1" />
+      </svg>
+      <div class="gris-menu-center">
+        <div class="gris-menu-center-circles">
+          <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" class="gris-circles-inner">
+            <!-- Concentric, centered, rotated squares like GRIS menu -->
+            <g class="gris-menu-squares" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.85">
+              <!-- Largest: corners touch r=220 circle -->
+              <rect x="84.6" y="84.6" width="430.8" height="430.8" transform="rotate(45 300 300)" />
+              <!-- Middle: corners touch r=170 circle -->
+              <rect x="179.8" y="179.8" width="240.4" height="240.4" transform="rotate(45 300 300)" />
+              <!-- Smallest: corners touch r=120 circle -->
+              <rect x="215.8" y="215.8" width="168.4" height="168.4" transform="rotate(45 300 300)" />
+            </g>
+            <!-- Small planet-like circumferences: one per selected circle, not on squares -->
+            <g class="gris-menu-planets">
+              <!-- On r=220 at 45deg (x=300+220/sqrt(2), y=300-220/sqrt(2)) -->
+              <circle cx="455.6" cy="144.4" r="8" stroke="#fff" stroke-width="2" fill="none" />
+              <!-- On r=170 at 210deg (x=300+170*cos(210), y=300+170*sin(210)) -->
+              <circle cx="217.5" cy="447.5" r="6" stroke="#fff" stroke-width="1.5" fill="none" />
+              <!-- On r=70 at 300deg (x=300+70*cos(300), y=300+70*sin(300)) -->
+              <circle cx="335" cy="239.6" r="5" stroke="#fff" stroke-width="1.2" fill="none" />
+            </g>
+            <!-- Menu points -->
+            <g class="gris-menu-points">
+              <circle cx="300" cy="80" r="10"/>
+              <circle cx="520" cy="300" r="10" />
+              <circle cx="300" cy="520" r="10" />
+              <circle cx="80" cy="300" r="10"/>
+            </g>
+            <!-- Center text -->
+            <text id="center-text" x="300" y="315" text-anchor="middle" fill="#222" font-size="40" font-family="Montserrat">PONG</text>
+          </svg>
+          <div class="gris-menu-buttons">
+            <button id="play-btn" class="gris-btn gris-btn-top">Play</button>
+            <button id="settings-btn" class="gris-btn gris-btn-list">List Users</button>
+            <button id="login-btn" class="gris-btn gris-btn-left">Login</button>
+            <button id="tournaments-btn" class="gris-btn gris-btn-bottom">Settings</button>
+            <button id="logout-btn" class="gris-btn gris-btn-right">Logout</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  <!-- Load compiled JavaScript with modules -->
+  <script type="module" src="./index.js"></script>
+  <script>
+    // Static orbs and constellation effect, orbs follow mouse when touched
+    const canvas = document.getElementById('orbs-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      let mouse = { x: width/2, y: height/2 };
+      window.addEventListener('resize', () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      });
+      window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      // Orb class
+      class Orb {
+        constructor() {
+          this.baseX = Math.random() * width * 0.85 + width*0.075;
+          this.baseY = Math.random() * height * 0.7 + height*0.15;
+          this.x = this.baseX;
+          this.y = this.baseY;
+          this.radius = Math.random()*2.2 + 1.2;
+          this.color = 'rgba(255,255,255,0.92)';
+          this.following = false;
+          this.angle = Math.random()*2*Math.PI;
+          this.orbit = 18 + Math.random()*38;
+          this.speed = 0.008 + Math.random()*0.012;
+        }
+        update() {
+          if (this.following) {
+            this.angle += this.speed;
+            this.x += (mouse.x + Math.cos(this.angle)*this.orbit - this.x)*0.09;
+            this.y += (mouse.y + Math.sin(this.angle)*this.orbit - this.y)*0.09;
+          } else {
+            // Slowly return to base position if not following
+            this.x += (this.baseX - this.x)*0.07;
+            this.y += (this.baseY - this.y)*0.07;
+          }
+        }
+        draw(ctx) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+          ctx.shadowColor = '#fff';
+          ctx.shadowBlur = 8;
+          ctx.fillStyle = this.color;
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+      const orbs = Array.from({length: 16}, () => new Orb());
+      function drawConstellations() {
+        // Connect orbs that are close to each other
+        for (let i = 0; i < orbs.length; ++i) {
+          for (let j = i+1; j < orbs.length; ++j) {
+            const a = orbs[i], b = orbs[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 100) {
+              ctx.save();
+              ctx.globalAlpha = 0.18 + 0.18*(1-dist/100);
+              ctx.strokeStyle = '#fff';
+              ctx.lineWidth = 1.1;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+              ctx.restore();
+            }
+          }
+        }
+      }
+      // Track the order of following orbs (FIFO)
+      const followingQueue = [];
+      const MAX_FOLLOWING = 5;
+      function animate() {
+        ctx.clearRect(0,0,width,height);
+        // Check for mouse proximity
+        for (const orb of orbs) {
+          const dx = orb.x - mouse.x, dy = orb.y - mouse.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 40 && !orb.following) {
+            orb.following = true;
+            followingQueue.push(orb);
+            if (followingQueue.length > MAX_FOLLOWING) {
+              const oldest = followingQueue.shift();
+              if (oldest) oldest.following = false;
+            }
+          } else if (orb.following && dist > 220) {
+            orb.following = false;
+            // Remove from queue if present
+            const idx = followingQueue.indexOf(orb);
+            if (idx !== -1) followingQueue.splice(idx, 1);
+          }
+          orb.update();
+          orb.draw(ctx);
+        }
+        drawConstellations();
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+  </script>
 </body>
+</html>
