@@ -109,6 +109,53 @@ function logout() {
 // Restore user session on page load
 restoreUserSession();
 
+// Function to show indicator for a button
+function showIndicator(buttonId: string) {
+  const indicatorId = buttonId.replace('-btn', '-indicator');
+  const indicator = document.getElementById(indicatorId);
+  if (indicator) {
+    indicator.classList.add('active');
+  }
+}
+
+// Function to hide indicator for a button
+function hideIndicator(buttonId: string) {
+  const indicatorId = buttonId.replace('-btn', '-indicator');
+  const indicator = document.getElementById(indicatorId);
+  if (indicator) {
+    indicator.classList.remove('active');
+  }
+}
+
+// Function to hide all indicators
+function hideAllIndicators() {
+  const indicators = document.querySelectorAll('.button-indicator');
+  indicators.forEach(indicator => {
+    indicator.classList.remove('active');
+  });
+}
+
+// Add hover effects to buttons
+function addButtonHoverEffects() {
+  const buttons = ['play-btn', 'login-btn', 'settings-btn', 'tournaments-btn', 'logout-btn'];
+  
+  buttons.forEach(buttonId => {
+    const button = document.getElementById(buttonId);
+    if (button) {
+      button.addEventListener('mouseenter', () => {
+        showIndicator(buttonId);
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        hideIndicator(buttonId);
+      });
+    }
+  });
+}
+
+// Initialize hover effects
+addButtonHoverEffects();
+
 if (playBtn) {
   console.log('playBtn found');
   playBtn.addEventListener('click', () => {

@@ -50,7 +50,6 @@ export function renderRegistrationForm(container: HTMLElement) {
       });
 
       if (!response.ok) throw new Error('Failed to register');
-      console.log(response);
       const data = await response.json();
       result.innerText = `✅ Registered: ${JSON.stringify(data)}`;
       form.reset();

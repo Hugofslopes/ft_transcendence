@@ -18,16 +18,29 @@
     <!-- MAIN CONTENT: GRIS-like circular menu -->
     <main class="main-content gris-menu-bg">
       <svg class="gris-circles-bg" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <circle cx="960" cy="540" r="500" stroke="#bbb" stroke-width="2" />
-        <circle cx="960" cy="540" r="400" stroke="#bbb" stroke-width="2" />
-        <circle cx="960" cy="540" r="320" stroke="#bbb" stroke-width="2" />
-        <circle cx="960" cy="540" r="250" stroke="#bbb" stroke-width="2" />
-        <circle cx="960" cy="540" r="180" stroke="#bbb" stroke-width="2" />
-        <circle cx="960" cy="540" r="120" stroke="#bbb" stroke-width="2" />
+        <!-- Massive outer circles -->
+        <circle cx="960" cy="540" r="920" stroke="#fff" stroke-width="1.2" opacity="0.5" />
+        <circle cx="960" cy="540" r="890" stroke="#fff" stroke-width="3" opacity="0.5" />
+        <circle cx="960" cy="540" r="880" stroke="#fff" stroke-width="1" opacity="0.5" />
+
+
+        <!-- Bigger outer circles -->
+        <circle cx="960" cy="540" r="750" stroke="#fff" stroke-width="1.5" opacity="0.6" stroke-dasharray="2" />
+        <circle cx="960" cy="540" r="700" stroke="#fff" stroke-width="1.8" opacity="0.7" />
+        <!-- Original circles -->
+        <circle cx="960" cy="540" r="320" stroke="#fff" stroke-width="2" />
+        <circle cx="960" cy="540" r="250" stroke="#fff" stroke-width="2" />
+        <circle cx="960" cy="540" r="180" stroke="#fff" stroke-width="2" />
+        <circle cx="960" cy="540" r="120" stroke="#fff" stroke-width="2" />
         <!-- Decorative off-center circles -->
-        <circle cx="300" cy="200" r="80" stroke="#ddd" stroke-width="1.5" />
-        <circle cx="1700" cy="900" r="60" stroke="#ddd" stroke-width="1.5" />
-        <circle cx="400" cy="900" r="40" stroke="#eee" stroke-width="1" />
+        <circle cx="300" cy="200" r="80" stroke="#fff" stroke-width="1.5" />
+        <circle cx="1700" cy="900" r="60" stroke="#fff" stroke-width="1.5" />
+        <circle cx="400" cy="900" r="40" stroke="#fff" stroke-width="1" />
+        <!-- Additional decorative outer circles -->
+        <circle cx="200" cy="800" r="120" stroke="#fff" stroke-width="1" opacity="0.6" />
+        <circle cx="1600" cy="300" r="150" stroke="#fff" stroke-width="1.2" opacity="0.5" />
+        <circle cx="1500" cy="750" r="90" stroke="#fff" stroke-width="1" opacity="0.7" />
+        <circle cx="450" cy="150" r="110" stroke="#fff" stroke-width="1.1" opacity="0.6" />
       </svg>
       <div class="gris-menu-center">
         <div class="gris-menu-center-circles">
@@ -35,7 +48,8 @@
             <!-- Concentric, centered, rotated squares like GRIS menu -->
             <g class="gris-menu-squares" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.85">
               <!-- Largest: corners touch r=220 circle -->
-              <rect x="84.6" y="84.6" width="430.8" height="430.8" transform="rotate(45 300 300)" />
+              <rect x="88" y="88" width="423" height="423" transform="rotate(45 300 300)" stroke-dasharray="2" />
+              <rect x="88" y="88" width="423" height="423" transform="rotate(0 300 300)" stroke-dasharray="2" />
               <!-- Middle: corners touch r=170 circle -->
               <rect x="179.8" y="179.8" width="240.4" height="240.4" transform="rotate(45 300 300)" />
               <!-- Smallest: corners touch r=120 circle -->
@@ -58,14 +72,22 @@
               <circle cx="80" cy="300" r="10"/>
             </g>
             <!-- Center text -->
-            <text id="center-text" x="300" y="315" text-anchor="middle" fill="#222" font-size="40" font-family="Montserrat">PONG</text>
+            <text id="center-text" x="300" y="315" text-anchor="middle" fill="#fff" font-size="40" font-family="Montserrat">PONG</text>
           </svg>
           <div class="gris-menu-buttons">
             <button id="play-btn" class="gris-btn gris-btn-top">Play</button>
-            <button id="settings-btn" class="gris-btn gris-btn-list">List Users</button>
+            <div id="play-indicator" class="button-indicator indicator-top"></div>
+            
+
+            
             <button id="login-btn" class="gris-btn gris-btn-left">Login</button>
+            <div id="login-indicator" class="button-indicator indicator-left"></div>
+            
             <button id="tournaments-btn" class="gris-btn gris-btn-bottom">Settings</button>
+            <div id="tournaments-indicator" class="button-indicator indicator-bottom"></div>
+            
             <button id="logout-btn" class="gris-btn gris-btn-right">Logout</button>
+            <div id="logout-indicator" class="button-indicator indicator-right-logout"></div>
           </div>
         </div>
       </div>
