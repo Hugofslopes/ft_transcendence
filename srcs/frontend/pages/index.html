@@ -28,57 +28,37 @@
         <circle cx="960" cy="540" r="750" stroke="#fff" stroke-width="1.5" opacity="0.6" stroke-dasharray="2" />
         <circle cx="960" cy="540" r="700" stroke="#fff" stroke-width="1.8" opacity="0.7" />
         <!-- Original circles -->
-        <circle cx="960" cy="540" r="320" stroke="#fff" stroke-width="2" />
-        <circle cx="960" cy="540" r="250" stroke="#fff" stroke-width="2" />
-        <circle cx="960" cy="540" r="180" stroke="#fff" stroke-width="2" />
-        <circle cx="960" cy="540" r="120" stroke="#fff" stroke-width="2" />
+        <circle cx="960" cy="540" r="320" stroke="#fff" stroke-width="4" class="glow-medium"/>
+        <circle cx="960" cy="540" r="265" stroke="#fff" stroke-width="2" />
+        <circle cx="960" cy="540" r="190" stroke="#fff" stroke-width="4" />
+        <circle cx="960" cy="540" r="182" stroke="#fff" stroke-width="2.25" />
+        <circle cx="960" cy="540" r="150" stroke="#fff" stroke-width="2.25" />
+        <circle cx="960" cy="540" r="130" stroke="#fff" stroke-width="2.25"  stroke-dasharray="3.5" />
         <!-- Decorative off-center circles -->
         <circle cx="300" cy="200" r="80" stroke="#fff" stroke-width="1.5" />
         <circle cx="1700" cy="900" r="60" stroke="#fff" stroke-width="1.5" />
         <circle cx="400" cy="900" r="40" stroke="#fff" stroke-width="1" />
         <!-- Additional decorative outer circles -->
-        <circle cx="200" cy="800" r="120" stroke="#fff" stroke-width="1" opacity="0.6" />
         <circle cx="1600" cy="300" r="150" stroke="#fff" stroke-width="1.2" opacity="0.5" />
+        <circle cx="200" cy="800" r="120" stroke="#fff" stroke-width="1" opacity="0.6" />
         <circle cx="1500" cy="750" r="90" stroke="#fff" stroke-width="1" opacity="0.7" />
-        <circle cx="450" cy="150" r="110" stroke="#fff" stroke-width="1.1" opacity="0.6" />
+        <circle cx="450" cy="150" r="120" stroke="#fff" stroke-width="1.1" opacity="0.6" />
+        <g class="gris-menu-squares" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.85">
+          <!-- Middle: corners touch r=170 circle -->
+          <rect x="735" y="315" width="450" height="450" transform="rotate(45 960 540)" stroke-dasharray="3.5" />
+          <rect x="735" y="315" width="450" height="450" transform="rotate(0 960 540)" stroke-dasharray="3.5" />
+        </g>
       </svg>
       <div class="gris-menu-center">
         <div class="gris-menu-center-circles">
-          <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" class="gris-circles-inner">
-            <!-- Concentric, centered, rotated squares like GRIS menu -->
-            <g class="gris-menu-squares" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.85">
-              <!-- Largest: corners touch r=220 circle -->
-              <rect x="88" y="88" width="423" height="423" transform="rotate(45 300 300)" stroke-dasharray="2" />
-              <rect x="88" y="88" width="423" height="423" transform="rotate(0 300 300)" stroke-dasharray="2" />
-              <!-- Middle: corners touch r=170 circle -->
-              <rect x="179.8" y="179.8" width="240.4" height="240.4" transform="rotate(45 300 300)" />
-              <!-- Smallest: corners touch r=120 circle -->
-              <rect x="215.8" y="215.8" width="168.4" height="168.4" transform="rotate(45 300 300)" />
-            </g>
-            <!-- Small planet-like circumferences: one per selected circle, not on squares -->
-            <g class="gris-menu-planets">
-              <!-- On r=220 at 45deg (x=300+220/sqrt(2), y=300-220/sqrt(2)) -->
-              <circle cx="455.6" cy="144.4" r="8" stroke="#fff" stroke-width="2" fill="none" />
-              <!-- On r=170 at 210deg (x=300+170*cos(210), y=300+170*sin(210)) -->
-              <circle cx="217.5" cy="447.5" r="6" stroke="#fff" stroke-width="1.5" fill="none" />
-              <!-- On r=70 at 300deg (x=300+70*cos(300), y=300+70*sin(300)) -->
-              <circle cx="335" cy="239.6" r="5" stroke="#fff" stroke-width="1.2" fill="none" />
-            </g>
-            <!-- Menu points -->
-            <g class="gris-menu-points">
-              <circle cx="300" cy="80" r="10"/>
-              <circle cx="520" cy="300" r="10" />
-              <circle cx="300" cy="520" r="10" />
-              <circle cx="80" cy="300" r="10"/>
-            </g>
-            <!-- Center text -->
-            <text id="center-text" x="300" y="315" text-anchor="middle" fill="#fff" font-size="40" font-family="Montserrat">PONG</text>
-          </svg>
+          <!-- Center title -->
+          <div class="center-title glow-soft">
+            <h1>P O N G</h1>
+          </div>
+          
           <div class="gris-menu-buttons">
             <button id="play-btn" class="gris-btn gris-btn-top">Play</button>
             <div id="play-indicator" class="button-indicator indicator-top"></div>
-            
-
             
             <button id="login-btn" class="gris-btn gris-btn-left">Login</button>
             <div id="login-indicator" class="button-indicator indicator-left"></div>
@@ -87,7 +67,7 @@
             <div id="tournaments-indicator" class="button-indicator indicator-bottom"></div>
             
             <button id="logout-btn" class="gris-btn gris-btn-right">Logout</button>
-            <div id="logout-indicator" class="button-indicator indicator-right-logout"></div>
+            <div id="logout-indicator" class="button-indicator indicator-right"></div>
           </div>
         </div>
       </div>
