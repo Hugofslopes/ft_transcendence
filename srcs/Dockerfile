@@ -1,4 +1,4 @@
-FROM node:24
+FROM node:latest
 
 WORKDIR /usr/src/app
 
@@ -9,9 +9,6 @@ RUN npm install
 COPY . .
 
 RUN npm run build
-
-RUN mkdir -p dist/frontend/pages/assets
-RUN cp -r frontend/assets/* dist/frontend/pages/assets/
 
 EXPOSE 3000
 

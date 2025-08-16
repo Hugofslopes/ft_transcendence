@@ -305,27 +305,18 @@ export function renderRegistrationForm(container: HTMLElement) {
         Team:
         <select id="team" required>
           <option value="">Select a team</option>
-<<<<<<< HEAD:srcs/frontend/render.ts
           <option value="Red">Red</option>
           <option value="Blue">Blue</option>
           <option value="Green">Green</option>
           <option value="Yellow">Yellow</option>
-=======
-          <option value="HACKTIVISTS">HACKTIVISTS</option>
-          <option value="BUG BUSTERS">BUG BUSTERS</option>
-          <option value="LOGIC LEAGUE">LOGIC LEAGUE</option>
-          <option value="CODE ALLIANCE">CODE ALLIANCE</option>
->>>>>>> main:srcs/frontend/pages/services/registrationFrom.ts
         </select>
       </label>
       <label>
-        <br>Password:
+        Password:
         <input type="password" id="password" required />
       </label>
       <button type="submit">Register</button>
     </form>
-
-    <!-- ADD THIS DIV BELOW THE FORM TO SHOW RESULTS -->
     <div id="result"></div>
   `;
 
@@ -337,7 +328,7 @@ export function renderRegistrationForm(container: HTMLElement) {
 
     const name = (document.getElementById('name') as HTMLInputElement).value;
     const username = (document.getElementById('username') as HTMLInputElement).value;
-    const team = (document.getElementById('team') as HTMLSelectElement).value;
+    const team = (document.getElementById('team') as HTMLInputElement).value;
     const password = (document.getElementById('password') as HTMLInputElement).value;
 
     try {

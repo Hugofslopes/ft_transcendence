@@ -3,33 +3,30 @@ import fastifyCors from '@fastify/cors';
 import fastifyStatic from '@fastify/static';
 import path from 'path';
 
+import { fileURLToPath } from 'url';
 import { userRoutes } from './routes/user.js';
-import { tournamentRoutes } from './routes/tournamentRoutes.js';
-import { registerTeamRoutes } from './routes/teamRoutes.js';
 
-import '../backend/db/database.js';
+import '../backend/db/database.js'; // Runs DB setup
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const fastify = Fastify({ logger: true });
 
-// Enable CORS for all origins
 fastify.register(fastifyCors, {
   origin: true,
 });
 
-// Serve static files from 'pages' at root '/'
-const pagesPath = path.join(process.cwd(), 'dist', 'frontend', 'pages');
-console.log('Serving pages from:', pagesPath);
 fastify.register(fastifyStatic, {
-  root: pagesPath,
+  root: path.join(__dirname, '..', 'frontend'),
   prefix: '/',
-  index: ['index.html'],
+});
+
+fastify.get('/', async (_request, reply) => {
+  return reply.sendFile('index.html');
 });
 
 fastify.register(userRoutes);
-fastify.register(tournamentRoutes);
-fastify.register(registerTeamRoutes);
-
-// Explicit '/' route not required because of index: ['index.html'] in pages static
 
 const start = async () => {
   try {
@@ -40,5 +37,6 @@ const start = async () => {
     process.exit(1);
   }
 };
+
 
 start();
