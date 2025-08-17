@@ -19,30 +19,50 @@
     <main class="main-content gris-menu-bg">
       <svg class="gris-circles-bg" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <!-- Massive outer circles -->
-        <circle cx="960" cy="540" r="920" stroke="#fff" stroke-width="1.2" opacity="0.5" />
-        <circle cx="960" cy="540" r="890" stroke="#fff" stroke-width="3" opacity="0.5" />
-        <circle cx="960" cy="540" r="880" stroke="#fff" stroke-width="1" opacity="0.5" />
-
-
+        <circle cx="960" cy="540" r="920" class="massive-outer-circles thin" />
+        <circle cx="960" cy="540" r="890" class="massive-outer-circles thick glow-medium" />
+        <circle cx="1850" cy="540" r="6" class="traveling-dot traveling-dot-full orbit-animation orbit-very-very-slow" />
+        <circle cx="1850" cy="540" r="6" class="traveling-dot traveling-dot-full orbit-animation orbit-very-very-slow" />
+        <circle cx="960" cy="540" r="880" class="massive-outer-circles ultra-thin" />
         <!-- Bigger outer circles -->
-        <circle cx="960" cy="540" r="750" stroke="#fff" stroke-width="1.5" opacity="0.6" stroke-dasharray="2" />
-        <circle cx="960" cy="540" r="700" stroke="#fff" stroke-width="1.8" opacity="0.7" />
+        <circle cx="960" cy="540" r="750" class="bigger-outer-circles dashed" />
+        <circle cx="960" cy="540" r="700" class="bigger-outer-circles solid" />
+        <circle cx="1660" cy="540" r="12" class="traveling-dot traveling-dot-full orbit-animation orbit-very-slow" />
+        <circle cx="1660" cy="540" r="16" class="traveling-dot traveling-dot-hollow orbit-animation orbit-very-slow" />
+        <!-- Double orbit: satellite orbits around traveling dot, while both orbit around center -->
+        <g class="orbit-animation orbit-very-slow" style="transform-origin: 960px 540px;">
+          <g class="satellite-orbit orbit-very-fast" style="transform-origin: 1660px 540px;">
+            <circle cx="1676" cy="540" r="2" class="traveling-dot traveling-dot-hollow" />
+          </g>
+        </g>
+        <circle cx="1660" cy="540" r="24" class="traveling-dot traveling-dot-hollow orbit-animation orbit-very-slow" />
         <!-- Original circles -->
-        <circle cx="960" cy="540" r="320" stroke="#fff" stroke-width="4" class="glow-medium"/>
-        <circle cx="960" cy="540" r="265" stroke="#fff" stroke-width="2" />
-        <circle cx="960" cy="540" r="190" stroke="#fff" stroke-width="4" />
-        <circle cx="960" cy="540" r="182" stroke="#fff" stroke-width="2.25" />
-        <circle cx="960" cy="540" r="150" stroke="#fff" stroke-width="2.25" />
-        <circle cx="960" cy="540" r="130" stroke="#fff" stroke-width="2.25"  stroke-dasharray="3.5" />
+        <circle cx="960" cy="540" r="320" class="main-circles thick glow-soft"/>
+
+        <circle cx="960" cy="540" r="265" class="main-circles thin" />
+
+        <circle cx="960" cy="540" r="190" class="main-circles thick" />
+        <circle cx="1150" cy="540" r="8" class="traveling-dot traveling-dot-full orbit-animation orbit-slow start-random-3" />
+        <circle cx="1150" cy="540" r="16" class="traveling-dot traveling-dot-hollow orbit-animation orbit-slow start-random-7" />
+
+        <circle cx="960" cy="540" r="182" class="main-circles medium" />
+        <circle cx="960" cy="540" r="155" class="main-circles medium" />
+        <circle cx="1115" cy="540" r="8" class="traveling-dot traveling-dot-full orbit-animation orbit-fast" />
+        <circle cx="1115" cy="540" r="16" class="traveling-dot traveling-dot-hollow orbit-animation orbit-fast" />
+        <circle cx="960" cy="540" r="130" class="main-circles medium dashed" />
+        
+        <!-- Traveling dot that follows the 265-radius circle -->
+
+
         <!-- Decorative off-center circles -->
-        <circle cx="300" cy="200" r="80" stroke="#fff" stroke-width="1.5" />
-        <circle cx="1700" cy="900" r="60" stroke="#fff" stroke-width="1.5" />
-        <circle cx="400" cy="900" r="40" stroke="#fff" stroke-width="1" />
+        <circle cx="300" cy="200" r="80" class="decorative-circles medium" />
+        <circle cx="1700" cy="900" r="60" class="decorative-circles medium" />
+        <circle cx="400" cy="900" r="40" class="decorative-circles thin" />
         <!-- Additional decorative outer circles -->
-        <circle cx="1600" cy="300" r="150" stroke="#fff" stroke-width="1.2" opacity="0.5" />
-        <circle cx="200" cy="800" r="120" stroke="#fff" stroke-width="1" opacity="0.6" />
-        <circle cx="1500" cy="750" r="90" stroke="#fff" stroke-width="1" opacity="0.7" />
-        <circle cx="450" cy="150" r="120" stroke="#fff" stroke-width="1.1" opacity="0.6" />
+        <circle cx="1600" cy="300" r="150" class="decorative-circles ultra-thin opacity-50" />
+        <circle cx="200" cy="800" r="120" class="decorative-circles thin opacity-60" />
+        <circle cx="1500" cy="750" r="90" class="decorative-circles thin opacity-70" />
+        <circle cx="450" cy="150" r="120" class="decorative-circles fine opacity-60" />
         <g class="gris-menu-squares" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.85">
           <!-- Middle: corners touch r=170 circle -->
           <rect x="735" y="315" width="450" height="450" transform="rotate(45 960 540)" stroke-dasharray="3.5" />
@@ -51,17 +71,17 @@
       </svg>
       <div class="gris-menu-center">
         <div class="gris-menu-center-circles">
-          <!-- Center title -->
+          <!-- Center title id="play-indicator" class="button-indicator indicator-top"-->
           <div class="center-title glow-soft">
             <h1>P O N G</h1>
           </div>
           
           <div class="gris-menu-buttons">
             <button id="play-btn" class="gris-btn gris-btn-top">Play</button>
-            <div id="play-indicator" class="button-indicator indicator-top"></div>
+
             
             <button id="login-btn" class="gris-btn gris-btn-left">Login</button>
-            <div id="login-indicator" class="button-indicator indicator-left"></div>
+
             
             <button id="tournaments-btn" class="gris-btn gris-btn-bottom">Settings</button>
             <div id="tournaments-indicator" class="button-indicator indicator-bottom"></div>

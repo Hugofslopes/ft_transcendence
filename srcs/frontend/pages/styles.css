@@ -189,6 +189,14 @@
   filter: drop-shadow(0 0 15px rgba(255,255,255,0.8)) drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 45px rgba(255,255,255,0.3));
 }
 
+.gris-circles-outer {
+  cx: "960";
+  cy: "540";
+  r: "880";
+  stroke: "#fff";
+  opacity: "0.8";
+}
+
 .gris-menu-center {
   position: fixed;
   top: 50%;
@@ -304,6 +312,8 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
   box-shadow: 0 0 12px rgba(255,255,255,0.6);
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .button-indicator::after {
@@ -798,6 +808,187 @@ body {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) 
           drop-shadow(0 0 16px rgba(255, 255, 255, 0.6)) 
           drop-shadow(0 0 24px rgba(255, 255, 255, 0.4));
+}
+
+/* Massive outer circles styling */
+.massive-outer-circles {
+  stroke: #fff;
+  fill: none;
+  opacity: 0.8;
+}
+
+.massive-outer-circles.thick {
+  stroke-width: 3;
+}
+
+.massive-outer-circles.thin {
+  stroke-width: 1.2;
+}
+
+.massive-outer-circles.ultra-thin {
+  stroke-width: 1;
+}
+
+/* Bigger outer circles */
+.bigger-outer-circles {
+  stroke: #fff;
+  fill: none;
+  opacity: 0.8;
+}
+
+.bigger-outer-circles.dashed {
+  stroke-width: 1.5;
+  stroke-dasharray: 2;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.bigger-outer-circles.solid {
+  stroke-width: 1.8;
+  opacity: 0.9;
+}
+
+/* Main concentric circles */
+.main-circles {
+  stroke: #fff;
+  fill: none;
+}
+
+.main-circles.thick {
+  stroke-width: 4;
+}
+
+.main-circles.medium {
+  stroke-width: 2.25;
+}
+
+.main-circles.thin {
+  stroke-width: 2;
+}
+
+.main-circles.dashed {
+  stroke-dasharray: 3.5;
+}
+
+/* Decorative off-center circles */
+.decorative-circles {
+  stroke: #fff;
+  fill: none;
+}
+
+.decorative-circles.medium {
+  stroke-width: 1.5;
+}
+
+.decorative-circles.thin {
+  stroke-width: 1;
+}
+
+.decorative-circles.fine {
+  stroke-width: 1.1;
+}
+
+.decorative-circles.ultra-thin {
+  stroke-width: 1.2;
+}
+
+/* Opacity modifiers for all circle types */
+.opacity-50 { opacity: 0.5; }
+.opacity-60 { opacity: 0.6; }
+.opacity-70 { opacity: 0.7; }
+.opacity-80 { opacity: 0.8; }
+.opacity-90 { opacity: 0.9; }
+
+/* Rotation animation for dashed circles */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply rotation to dashed circles */
+.bigger-outer-circles.dashed {
+  animation: rotate 90s linear infinite;
+  transform-origin: center;
+}
+
+.main-circles.dashed {
+  animation: rotate 30s linear infinite reverse;
+  transform-origin: center;
+}
+
+/* Traveling dot that follows circle paths */
+.traveling-dot {
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) 
+          drop-shadow(0 0 16px rgba(255, 255, 255, 0.6));
+}
+
+/* Full traveling dot - solid circle */
+.traveling-dot-full {
+  fill: #fff;
+  stroke: none;
+}
+
+/* Hollow traveling dot - just the circumference */
+.traveling-dot-hollow {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+/* Animation for traveling elements around circles */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-animation {
+  animation: orbit var(--orbit-duration, 30s) linear infinite;
+  transform-origin: 960px 540px; /* Center point of the circles */
+}
+
+/* Satellite orbit animation - for elements orbiting around traveling dots */
+.satellite-orbit {
+  animation: orbit var(--orbit-duration, 30s) linear infinite;
+  /* transform-origin will be set inline for each satellite based on its parent */
+}
+
+/* Predefined orbit speed classes for common durations */
+.orbit-very-fast {
+  --orbit-duration: 15s;
+}
+
+.orbit-fast {
+  --orbit-duration: 30s;
+}
+
+.orbit-normal {
+  --orbit-duration: 45s;
+}
+
+.orbit-slow {
+  --orbit-duration: 60s;
+}
+
+.orbit-very-slow {
+  --orbit-duration: 90s;
+}
+.orbit-very-very-slow {
+  --orbit-duration: 120s;
 }
 
 /* Alternative glow classes for different intensities */
