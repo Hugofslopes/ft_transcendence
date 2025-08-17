@@ -81,6 +81,13 @@
   top: 50%;
   transform: translate(0, -50%);
 }
+.gris-btn-secondary {
+  left: calc(50%);
+  top: calc(-25%);
+  transform: translate(-50%, -50%);
+  font-size: 0.9em;
+  opacity: 0.8;
+}
 
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   .gris-menu-center-circles {
@@ -370,6 +377,12 @@
   left: -2%;
   top: 50%;
   transform: translate(0, -50%);
+}
+
+.indicator-secondary {
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 700px) {
@@ -1011,4 +1024,80 @@ body {
   .site-header {
     padding: 16px 0; /* slightly tighter on small screens */
   }
+}
+
+/* User List Buttons */
+.user-list-buttons {
+  pointer-events: all;
+}
+
+.user-button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: all;
+}
+
+.user-button:hover {
+  transform: scale(1.1);
+}
+
+.user-button:hover .button-bg {
+  fill: rgba(255, 255, 255, 0.2);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.user-button:hover text {
+  opacity: 1;
+}
+
+.user-button:active {
+  transform: scale(0.95);
+}
+
+/* Individual button hover effects */
+.online-users:hover circle[fill="#00ff00"] {
+  filter: drop-shadow(0 0 4px #00ff00);
+}
+
+.leaderboard:hover circle[fill="#ffd700"] {
+  filter: drop-shadow(0 0 3px #ffd700);
+}
+
+.leaderboard:hover circle[fill="#c0c0c0"] {
+  filter: drop-shadow(0 0 3px #c0c0c0);
+}
+
+.leaderboard:hover circle[fill="#cd7f32"] {
+  filter: drop-shadow(0 0 3px #cd7f32);
+}
+
+.user-stats:hover rect {
+  fill: #00bfff;
+  filter: drop-shadow(0 0 2px #00bfff);
+}
+
+/* Button animations */
+@keyframes pulse-green {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.online-users circle[fill="#00ff00"] {
+  animation: pulse-green 2s infinite;
+}
+
+/* Single 45-degree rotation animation */
+@keyframes rotate-45-once {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+.rotate-45-once {
+  animation: rotate-45-once 1s ease-out forwards;
+  transform-origin: 960px 540px; /* Rotate around center point */
 }

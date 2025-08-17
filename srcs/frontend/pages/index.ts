@@ -2,12 +2,14 @@ import { renderAuthModal, renderUserListModal, renderDeleteUserModal } from './s
 import { renderSettingsPage } from './services/settings.js';
 import { renderTournamentsPage } from './services/tournaments.js';
 import { renderTeamsPage } from './services/teams.js';
+import { circleRotation } from './services/circleRotation.js';
 
 const playBtn = document.getElementById('play-btn') as HTMLButtonElement;
 const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
 const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
 const tournamentsBtn = document.getElementById('tournaments-btn') as HTMLButtonElement;
 const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement;
+const usersBtn = document.getElementById('users-btn') as HTMLButtonElement;
 
 console.log('Setting up button event listeners...');
 
@@ -38,12 +40,18 @@ function updateButtonVisibility() {
   const logoutBtn = document.getElementById('logout-btn');
   
   if (isUserLoggedIn()) {
-    // User is logged in - show logout, hide login
-    if (loginBtn) loginBtn.style.display = 'none';
+    // User is logged in - change login button to profile, show logout
+    if (loginBtn) {
+      loginBtn.textContent = 'Profile';
+      loginBtn.style.display = 'block';
+    }
     if (logoutBtn) logoutBtn.style.display = 'block';
   } else {
     // User is not logged in - show login, hide logout
-    if (loginBtn) loginBtn.style.display = 'block';
+    if (loginBtn) {
+      loginBtn.textContent = 'Login';
+      loginBtn.style.display = 'block';
+    }
     if (logoutBtn) logoutBtn.style.display = 'none';
   }
 }
@@ -109,6 +117,14 @@ function logout() {
 // Restore user session on page load
 restoreUserSession();
 
+// Initialize circle rotation system
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit for the circles animation to load
+  setTimeout(() => {
+    circleRotation.init('rotatable-circle');
+  }, 1000);
+});
+
 // Function to show indicator for a button
 function showIndicator(buttonId: string) {
   const indicatorId = buttonId.replace('-btn', '-indicator');
@@ -137,7 +153,7 @@ function hideAllIndicators() {
 
 // Add hover effects to buttons
 function addButtonHoverEffects() {
-  const buttons = ['play-btn', 'login-btn', 'settings-btn', 'tournaments-btn', 'logout-btn'];
+  const buttons = ['play-btn', 'login-btn', 'settings-btn', 'tournaments-btn', 'logout-btn', 'users-btn'];
   
   buttons.forEach(buttonId => {
     const button = document.getElementById(buttonId);
@@ -174,8 +190,21 @@ if (playBtn) {
 if (loginBtn) {
   console.log('loginBtn found');
   loginBtn.addEventListener('click', () => {
-    console.log('Login button clicked - opening auth modal');
-    renderAuthModal('login'); // Open with login tab active
+    if (isUserLoggedIn()) {
+      // User is logged in - show profile/user info
+      console.log('Profile button clicked - opening user profile');
+      const user = getCurrentUser();
+      if (user) {
+        // You can create a profile modal or redirect to profile page
+        // For now, let's show user info in console and maybe open settings
+        console.log('User profile:', user);
+        renderUserListModal(); // Temporary - you might want a dedicated profile modal
+      }
+    } else {
+      // User not logged in - show login modal
+      console.log('Login button clicked - opening auth modal');
+      renderAuthModal('login'); // Open with login tab active
+    }
   });
 }
 
@@ -200,5 +229,13 @@ if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
     console.log('Logout button clicked');
     logout();
+  });
+}
+
+if (usersBtn) {
+  console.log('usersBtn found');
+  usersBtn.addEventListener('click', () => {
+    console.log('Users button clicked - opening user list modal');
+    renderUserListModal();
   });
 }

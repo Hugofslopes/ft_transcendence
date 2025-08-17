@@ -7,13 +7,19 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
     const userData = localStorage.getItem('currentUser');
     
     if (userData) {
-      // User is logged in - show logout, hide login
-      if (loginBtn) loginBtn.style.display = 'none';
+      // User is logged in - change login button to profile, show logout
+      if (loginBtn) {
+        loginBtn.textContent = 'Profile';
+        loginBtn.style.display = 'block';
+      }
       if (logoutBtn) logoutBtn.style.display = 'block';
-      console.log('Updated buttons: login hidden, logout visible');
+      console.log('Updated buttons: login changed to profile, logout visible');
     } else {
       // User is not logged in - show login, hide logout
-      if (loginBtn) loginBtn.style.display = 'block';
+      if (loginBtn) {
+        loginBtn.textContent = 'Login';
+        loginBtn.style.display = 'block';
+      }
       if (logoutBtn) logoutBtn.style.display = 'none';
       console.log('Updated buttons: login visible, logout hidden');
     }
@@ -229,167 +235,6 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
       setTimeout(() => {
         closeModal();
       }, 2000);
-    } catch (err) {
-      result.innerText = `❌ ${(err as Error).message}`;
-    }
-  });
-}
-
-export function renderRegistrationModal() {
-  // Create modal overlay
-  const modalOverlay = document.createElement('div');
-  modalOverlay.className = 'modal-overlay';
-  modalOverlay.innerHTML = `
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Register</h2>
-        <button class="modal-close">&times;</button>
-      </div>
-      <form id="registration-form">
-        <label>
-          Name:
-          <input type="text" id="name" required />
-        </label>
-        <label>
-          Username:
-          <input type="text" id="username" required />
-        </label>
-        <label>
-          Team:
-          <select id="team" required>
-            <option value="">Select a team</option>
-            <option value="HACKTIVISTS">HACKTIVISTS</option>
-            <option value="BUG BUSTERS">BUG BUSTERS</option>
-            <option value="LOGIC LEAGUE">LOGIC LEAGUE</option>
-            <option value="CODE ALLIANCE">CODE ALLIANCE</option>
-          </select>
-        </label>
-        <label>
-          Password:
-          <input type="password" id="password" required />
-        </label>
-        <button type="submit">Register</button>
-      </form>
-      <div id="result"></div>
-    </div>
-  `;
-
-  // Add to body
-  document.body.appendChild(modalOverlay);
-
-  // Get elements
-  const form = document.getElementById('registration-form') as HTMLFormElement;
-  const result = document.getElementById('result') as HTMLDivElement;
-  const closeButton = document.querySelector('.modal-close') as HTMLButtonElement;
-
-  // Close modal function
-  const closeModal = () => {
-    document.body.removeChild(modalOverlay);
-  };
-
-  // Close button event
-  closeButton.addEventListener('click', closeModal);
-
-  // Close on overlay click
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-      closeModal();
-    }
-  });
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  });
-
-  // Form submission
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = (document.getElementById('name') as HTMLInputElement).value;
-    const username = (document.getElementById('username') as HTMLInputElement).value;
-    const team = (document.getElementById('team') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-
-    try {
-      const response = await fetch('/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, username, team, password })
-      });
-
-      if (!response.ok) throw new Error('Failed to register');
-
-      const data = await response.json();
-      result.innerText = `✅ Registered: ${JSON.stringify(data)}`;
-      form.reset();
-      
-      // Auto-close modal after successful registration
-      setTimeout(() => {
-        closeModal();
-      }, 2000);
-    } catch (err) {
-      result.innerText = `❌ ${(err as Error).message}`;
-    }
-  });
-}
-
-export function renderRegistrationForm(container: HTMLElement) {
-  container.innerHTML = `
-    <h2>Register</h2>
-    <form id="registration-form">
-      <label>
-        Name:
-        <input type="text" id="name" required />
-      </label>
-      <label>
-        Username:
-        <input type="text" id="username" required />
-      </label>
-      <label>
-        Team:
-        <select id="team" required>
-          <option value="">Select a team</option>
-          <option value="HACKTIVISTS">HACKTIVISTS</option>
-          <option value="BUG BUSTERS">BUG BUSTERS</option>
-          <option value="LOGIC LEAGUE">LOGIC LEAGUE</option>
-          <option value="CODE ALLIANCE">CODE ALLIANCE</option>
-        </select>
-      </label>
-      <label>
-        Password:
-        <input type="password" id="password" required />
-      </label>
-      <button type="submit">Register</button>
-    </form>
-    <div id="result"></div>
-  `;
-
-  const form = document.getElementById('registration-form') as HTMLFormElement;
-  const result = document.getElementById('result') as HTMLDivElement;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = (document.getElementById('name') as HTMLInputElement).value;
-    const username = (document.getElementById('username') as HTMLInputElement).value;
-    const team = (document.getElementById('team') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-
-    try {
-      const response = await fetch('/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, username, team, password })
-      });
-
-      if (!response.ok) throw new Error('Failed to register');
-
-      const data = await response.json();
-      result.innerText = `✅ Registered: ${JSON.stringify(data)}`;
-      form.reset();
     } catch (err) {
       result.innerText = `❌ ${(err as Error).message}`;
     }

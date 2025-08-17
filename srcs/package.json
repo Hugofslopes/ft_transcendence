@@ -24,7 +24,7 @@
   },
   "scripts": {
   "dev": "node dist/backend/server.js",
-  "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/pages/index.html dist/frontend/pages && cp frontend/pages/*.css dist/frontend/pages",
+  "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/pages/index.html dist/frontend/pages && cp frontend/pages/*.css dist/frontend/pages && cp frontend/pages/*.html dist/frontend/pages && cp -r frontend/assets dist/frontend/ && mkdir -p dist/frontend/pages/services && cp frontend/pages/services/*.js dist/frontend/pages/services/ 2>/dev/null || true",
   "build:backend": "tsc -p tsconfig.backend.json",
   "build": "npm run build:backend && npm run build:frontend",
   "clean": "rm -rf dist"
