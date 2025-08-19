@@ -3,6 +3,7 @@ import { renderSettingsPage } from './services/settings.js';
 import { renderTournamentsPage } from './services/tournaments.js';
 import { renderTeamsPage } from './services/teams.js';
 import { circleRotation } from './animations/circleRotation.js';
+import { renderGame } from './services/renderGame/renderGame.js';
 
 const playBtn = document.getElementById('play-btn') as HTMLButtonElement;
 const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
@@ -168,7 +169,7 @@ function addButtonHoverEffects() {
       });
     }
   });
-}
+}playBtn
 
 // Initialize hover effects
 addButtonHoverEffects();
