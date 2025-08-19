@@ -25,13 +25,40 @@
   border-color: #10b981;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
-  /* ...existing code... */
 @media (max-width: 600px) {
   .gris-circles-inner,
   .gris-menu-squares,
   .gris-circles-bg {
     display: none !important;
   }
+  
+  /* Hide the center title when circles disappear */
+  .center-title {
+    display: none !important;
+  }
+  
+  /* Add small header title */
+  .gris-menu-bg::before {
+    content: "PONG";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 10px transparent;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+  }
+  
   .gris-menu-buttons {
     display: flex !important;
     flex-direction: column !important;
@@ -44,8 +71,9 @@
     z-index: 2;
     pointer-events: auto;
     margin: 0 auto !important;
-    top: 0 !important;
+    top: 60px !important; /* Offset by header height */
     left: 0 !important;
+    padding-top: 20px;
   }
   .gris-btn {
     position: relative !important;
@@ -87,6 +115,11 @@
   transform: translate(-50%, -50%);
   font-size: 0.9em;
   opacity: 0.8;
+}
+.gris-btn-profile {
+  left: calc(-24%);
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
@@ -145,6 +178,53 @@
     border-width: 1px;
   }
 }
+
+/* Specific fix for screens like 915x412 - landscape mobile/small tablets */
+@media (min-width: 800px) and (max-width: 1000px) and (max-height: 500px) {
+  .gris-menu-center-circles {
+    width: clamp(180px, 70vw, 350px);
+    height: clamp(180px, 70vh, 350px);
+    max-width: 70vw;
+    max-height: 70vh;
+  }
+  
+  .gris-btn-top {
+    left: 50%;
+    top: -18%;
+    transform: translate(-50%, 0);
+  }
+  
+  .gris-btn-bottom {
+    left: 50%;
+    top: 118%;
+    transform: translate(-50%, -100%);
+  }
+  
+  .gris-btn-left {
+    left: 2%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  
+  .gris-btn-right {
+    left: 98%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+  }
+  
+  .gris-btn {
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    padding: clamp(6px, 1.5vw, 10px) clamp(12px, 3vw, 20px);
+    min-width: 60px;
+    max-width: 35vw;
+    white-space: nowrap;
+  }
+  
+  .center-title h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+}
+
 /* GRIS-like main menu styles */
 /* GRIS-like main menu full-page background */
 /* GRIS-like watercolor gradient background */

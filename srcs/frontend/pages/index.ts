@@ -2,7 +2,7 @@ import { renderAuthModal, renderUserListModal, renderDeleteUserModal } from './s
 import { renderSettingsPage } from './services/settings.js';
 import { renderTournamentsPage } from './services/tournaments.js';
 import { renderTeamsPage } from './services/teams.js';
-import { circleRotation } from './services/circleRotation.js';
+import { circleRotation } from './animations/circleRotation.js';
 
 const playBtn = document.getElementById('play-btn') as HTMLButtonElement;
 const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
@@ -10,6 +10,7 @@ const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement
 const tournamentsBtn = document.getElementById('tournaments-btn') as HTMLButtonElement;
 const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement;
 const usersBtn = document.getElementById('users-btn') as HTMLButtonElement;
+const profileBtn = document.getElementById('profile-btn') as HTMLButtonElement;
 
 console.log('Setting up button event listeners...');
 
@@ -172,14 +173,29 @@ function addButtonHoverEffects() {
 // Initialize hover effects
 addButtonHoverEffects();
 
+// Navigation handlers
+function setupNavigationHandlers(): void {
+  // Play button handler
+  const playBtn = document.getElementById('play-btn');
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      window.location.href = 'game.html';
+    });
+  }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  setupNavigationHandlers();
+});
+
+// Existing event listeners
 if (playBtn) {
   console.log('playBtn found');
   playBtn.addEventListener('click', () => {
     if (isUserLoggedIn()) {
-      const user = getCurrentUser();
-      console.log(`User ${user.name} is logged in and ready to play!`);
-      // Here you can add game logic or navigate to game page
-      console.log('Starting game for logged in user...');
+      // Redirect to game.html if logged in
+      window.location.href = 'game.html';
     } else {
       console.log('User not logged in - opening registration form');
       renderAuthModal('register'); // Open with register tab for new players
@@ -190,20 +206,14 @@ if (playBtn) {
 if (loginBtn) {
   console.log('loginBtn found');
   loginBtn.addEventListener('click', () => {
-    if (isUserLoggedIn()) {
-      // User is logged in - show profile/user info
-      console.log('Profile button clicked - opening user profile');
-      const user = getCurrentUser();
-      if (user) {
-        // You can create a profile modal or redirect to profile page
-        // For now, let's show user info in console and maybe open settings
-        console.log('User profile:', user);
-        renderUserListModal(); // Temporary - you might want a dedicated profile modal
-      }
-    } else {
+    if (!isUserLoggedIn()) {
       // User not logged in - show login modal
       console.log('Login button clicked - opening auth modal');
-      renderAuthModal('login'); // Open with login tab active
+      renderAuthModal('login');
+    }
+    else {
+      console.log('Profile button clicked - redirecting to profile.html');
+      window.location.href = 'profile.html';
     }
   });
 }
@@ -239,3 +249,45 @@ if (usersBtn) {
     renderUserListModal();
   });
 }
+
+// Function to setup play button after SVG loads
+function setupPlayButton() {
+  const playBtn = document.getElementById('play-btn');
+  if (playBtn) {
+    console.log('SVG play button found, adding event listener');
+    playBtn.addEventListener('click', () => {
+      if (isUserLoggedIn()) {
+        // Redirect to game.html if logged in
+        window.location.href = 'game.html';
+      } else {
+        console.log('User not logged in - opening registration form');
+        renderAuthModal('register'); // Open with register tab for new players
+      }
+    });
+  } else {
+    console.log('SVG play button not found');
+  }
+}
+
+
+
+
+(window as any).setupPlayButton = setupPlayButton;// Make setupPlayButton available globally// Call setupPlayButton from circles loading function
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit for the circles animation to load
+  setTimeout(() => {
+    circleRotation.init('rotatable-circle');
+    setupPlayButton(); // Setup play button after SVG loads
+  }, 1000);
+});
+
+// Listen for SVG play button clicks
+window.addEventListener('svgPlayButtonClicked', () => {
+  console.log('Received SVG play button click event');
+  if (isUserLoggedIn()) {
+    window.location.href = 'game.html';
+  } else {
+    console.log('User not logged in - opening registration form');
+    renderAuthModal('register');
+  }
+});

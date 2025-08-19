@@ -29,10 +29,10 @@
           <div class="gris-menu-buttons">
             <button id="play-btn" class="gris-btn gris-btn-top">Play</button>
 
-            
+            <!-- Login button - shown when user is not logged in -->
             <button id="login-btn" class="gris-btn gris-btn-left">Login</button>
-
-            
+            <!-- Profile button - shown when user is logged in -->
+            <button left="calc(-24%)" class="gris-btn gris-btn-left gris-btn-profile" style="display: none;">Profile</button>
             <button id="tournaments-btn" class="gris-btn gris-btn-bottom">Settings</button>
             
             <button id="logout-btn" class="gris-btn gris-btn-right">Logout</button>
@@ -59,114 +59,66 @@
     // Load circles when DOM is ready
     document.addEventListener('DOMContentLoaded', loadCirclesAnimation);
   </script>
+  <script type="module">
+    import { initializeOrbsAnimation } from './animations/orb.js';
+    // Initialize orbs animation when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeOrbsAnimation();
+    });
+  </script>
   <script>
-    // Static orbs and constellation effect, orbs follow mouse when touched
-    const canvas = document.getElementById('orbs-canvas');
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      let mouse = { x: width/2, y: height/2 };
-      window.addEventListener('resize', () => {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-      });
-      window.addEventListener('mousemove', e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-      // Orb class
-      class Orb {
-        constructor() {
-          this.baseX = Math.random() * width * 0.85 + width*0.075;
-          this.baseY = Math.random() * height * 0.7 + height*0.15;
-          this.x = this.baseX;
-          this.y = this.baseY;
-          this.radius = Math.random()*2.2 + 1.2;
-          this.color = 'rgba(255,255,255,0.92)';
-          this.following = false;
-          this.angle = Math.random()*2*Math.PI;
-          this.orbit = 18 + Math.random()*38;
-          this.speed = 0.008 + Math.random()*0.012;
-        }
-        update() {
-          if (this.following) {
-            this.angle += this.speed;
-            this.x += (mouse.x + Math.cos(this.angle)*this.orbit - this.x)*0.09;
-            this.y += (mouse.y + Math.sin(this.angle)*this.orbit - this.y)*0.09;
-          } else {
-            // Slowly return to base position if not following
-            this.x += (this.baseX - this.x)*0.07;
-            this.y += (this.baseY - this.y)*0.07;
-          }
-        }
-        draw(ctx) {
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-          ctx.shadowColor = '#fff';
-          ctx.shadowBlur = 8;
-          ctx.fillStyle = this.color;
-          ctx.fill();
-          ctx.restore();
-        }
+    // Function to toggle login/profile buttons based on authentication state
+    function updateAuthButtons(isLoggedIn) {
+      const loginBtn = document.getElementById('login-btn');
+      const profileBtn = document.getElementById('profile-btn');
+      
+      if (isLoggedIn) {
+        loginBtn.style.display = 'none';
+        profileBtn.style.display = 'block';
+      } else {
+        loginBtn.style.display = 'block';
+        profileBtn.style.display = 'none';
       }
-      const orbs = Array.from({length: 16}, () => new Orb());
-      function drawConstellations() {
-        // Connect orbs that are close to each other
-        for (let i = 0; i < orbs.length; ++i) {
-          for (let j = i+1; j < orbs.length; ++j) {
-            const a = orbs[i], b = orbs[j];
-            const dx = a.x - b.x, dy = a.y - b.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if (dist < 100) {
-              ctx.save();
-              ctx.globalAlpha = 0.18 + 0.18*(1-dist/100);
-              ctx.strokeStyle = '#fff';
-              ctx.lineWidth = 1.1;
-              ctx.beginPath();
-              ctx.moveTo(a.x, a.y);
-              ctx.lineTo(b.x, b.y);
-              ctx.stroke();
-              ctx.restore();
-            }
-          }
-        }
-      }
-      // Track the order of following orbs (FIFO)
-      const followingQueue = [];
-      const MAX_FOLLOWING = 5;
-      function animate() {
-        ctx.clearRect(0,0,width,height);
-        // Check for mouse proximity
-        for (const orb of orbs) {
-          const dx = orb.x - mouse.x, dy = orb.y - mouse.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 40 && !orb.following) {
-            orb.following = true;
-            followingQueue.push(orb);
-            if (followingQueue.length > MAX_FOLLOWING) {
-              const oldest = followingQueue.shift();
-              if (oldest) oldest.following = false;
-            }
-          } else if (orb.following && dist > 220) {
-            orb.following = false;
-            // Remove from queue if present
-            const idx = followingQueue.indexOf(orb);
-            if (idx !== -1) followingQueue.splice(idx, 1);
-          }
-          orb.update();
-          orb.draw(ctx);
-        }
-        drawConstellations();
-        requestAnimationFrame(animate);
-      }
-      animate();
     }
+    
+    // Example: Check authentication state and update buttons
+    // Replace this with your actual authentication check
+    function checkAuthState() {
+      // This should be replaced with your actual authentication logic
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      updateAuthButtons(isLoggedIn);
+    }
+    
+    // Update buttons when page loads
+    document.addEventListener('DOMContentLoaded', checkAuthState);
+  </script>
+</body>
+</html>
+  <script>
+    // Function to toggle login/profile buttons based on authentication state
+    function updateAuthButtons(isLoggedIn) {
+      const loginBtn = document.getElementById('login-btn');
+      const profileBtn = document.getElementById('profile-btn');
+      
+      if (isLoggedIn) {
+        loginBtn.style.display = 'none';
+        profileBtn.style.display = 'block';
+      } else {
+        loginBtn.style.display = 'block';
+        profileBtn.style.display = 'none';
+      }
+    }
+    
+    // Example: Check authentication state and update buttons
+    // Replace this with your actual authentication check
+    function checkAuthState() {
+      // This should be replaced with your actual authentication logic
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      updateAuthButtons(isLoggedIn);
+    }
+
+    // Update buttons when page loads
+    document.addEventListener('DOMContentLoaded', checkAuthState);
   </script>
 </body>
 </html>
