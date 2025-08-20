@@ -301,3 +301,22 @@ window.addEventListener('svgPlayButtonClicked', () => {
     renderAuthModal('register');
   }
 });
+
+loginBtn.addEventListener('click', () => {
+  appDiv.innerHTML = '';
+  renderLoginForm(appDiv, updateUIBasedOnAuth);
+});
+
+registerBtn.addEventListener('click', () => {
+  appDiv.innerHTML = '';
+  renderRegistrationForm(appDiv);
+});
+
+logoutBtn.addEventListener('click', () => {
+  localStorage.removeItem('authToken');
+  appDiv.innerHTML = '<p>You have been logged out.</p>';
+  updateUIBasedOnAuth();
+});
+
+// 🚀 Initialize UI
+updateUIBasedOnAuth();
