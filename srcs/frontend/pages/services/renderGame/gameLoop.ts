@@ -9,32 +9,35 @@ left: Paddle, right: Paddle, ball: Ball, gameId: number, maxGames: number,
 onRestart: () => void) {
     let gameEnded = false;
     let animationId: number;
+    let lastTime = performance.now();
 
     function stopGameLoop() {
         gameEnded = true;
         cancelAnimationFrame(animationId);
     }
 
-    function loop() {
+    function loop(now: number) {
         if (gameEnded) 
             return;
+        const deltaTime = (now - lastTime) / 1000;
+        lastTime = now;
+        updatePaddle(left, canvas, gameEnded, deltaTime);
+        updatePaddle(right, canvas, gameEnded, deltaTime);
 
-        updatePaddle(left, canvas, gameEnded);
-        updatePaddle(right, canvas, gameEnded);
-
-        updateBall(ball, left, right, canvas, maxGames, gameId, () => {
+        updateBall(ball, left, right, canvas, maxGames, gameId, deltaTime, () => {
             stopGameLoop();
             endGame(gameId, left.score, right.score, canvas, () => {
             left.score = 0;
             right.score = 0;
             resetBall(ball, canvas, ball.initialSpeed);
             gameEnded = false;
-            loop();
+            lastTime = performance.now();
+            loop(lastTime);
             }, left.nickname, right.nickname);
         });
 
         renderFrame(ctx, canvas, left, right, ball);
         animationId = requestAnimationFrame(loop);
     }
-    loop();
+    loop(performance.now());
 }

@@ -3,8 +3,9 @@ import { renderSettingsPage } from './services/settings.js';
 import { renderTournamentsPage } from './services/tournaments.js';
 import { renderTeamsPage } from './services/teams.js';
 import { circleRotation } from './animations/circleRotation.js';
-import { renderGame } from './services/renderGame/renderGame.js';
+import { renderPlayMenu } from './services/renderPlayMenu.js';
 
+const playMenuPlayBtn = document.getElementById('playMenu-play-btn') as HTMLButtonElement;
 const playBtn = document.getElementById('play-btn') as HTMLButtonElement;
 const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
 const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
@@ -12,8 +13,16 @@ const tournamentsBtn = document.getElementById('tournaments-btn') as HTMLButtonE
 const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement;
 const usersBtn = document.getElementById('users-btn') as HTMLButtonElement;
 const profileBtn = document.getElementById('profile-btn') as HTMLButtonElement;
+const appDiv = document.getElementById('app') as HTMLDivElement;
 
 console.log('Setting up button event listeners...');
+
+
+// 🧠 Event Listeners
+playMenuPlayBtn.addEventListener('click', () => {
+  appDiv.innerHTML = '';
+  renderPlayMenu(appDiv);
+});
 
 // Check if user is logged in
 function isUserLoggedIn(): boolean {
