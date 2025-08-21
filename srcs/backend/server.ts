@@ -29,12 +29,20 @@ origin: true,
 });
 
 const pagesPath = path.join(process.cwd(), 'dist', 'frontend', 'pages');
+const assetsPath = path.join(process.cwd(), 'dist', 'frontend', 'assets');
 console.log('Serving pages from:', pagesPath);
+console.log('Serving assets from:', assetsPath);
 
 fastify.register(fastifyStatic, {
 root: pagesPath,
 prefix: '/',
 index: ['index.html'],
+});
+
+fastify.register(fastifyStatic, {
+root: assetsPath,
+prefix: '/assets/',
+decorateReply: false,
 });
 
 fastify.register(userRoutes);

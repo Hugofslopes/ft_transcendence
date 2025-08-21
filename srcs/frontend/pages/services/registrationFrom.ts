@@ -43,7 +43,7 @@ export function renderRegistrationForm(container: HTMLElement) {
 		const password = (document.getElementById('password') as HTMLInputElement).value;
 
 		try {
-			const response = await fetch('/users', {
+			const response = await fetch('https://localhost:3000/users', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ name, username, team, password })

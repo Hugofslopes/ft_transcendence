@@ -163,7 +163,7 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
     const password = (document.getElementById('login-password') as HTMLInputElement).value;
 
     try {
-      const response = await fetch('/login', {
+      const response = await fetch('https://localhost:3000/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -206,7 +206,7 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
     const password = (document.getElementById('register-password') as HTMLInputElement).value;
 
     try {
-      const response = await fetch('/users', {
+      const response = await fetch('https://localhost:3000/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, username, team, password })
@@ -276,7 +276,7 @@ export function renderUserListModal() {
     try {
       usersListContainer.innerHTML = '<p>Loading users...</p>';
       
-      const response = await fetch('/users', {
+      const response = await fetch('https://localhost:3000/users', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -414,14 +414,14 @@ export function renderDeleteUserModal() {
       result.innerHTML = '<p>Deleting user...</p>';
       
       // Try to delete by ID first, then by username
-      let response = await fetch(`/users/${userIdentifier}`, {
+      let response = await fetch(`https://localhost:3000/users/${userIdentifier}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });
 
       if (!response.ok) {
         // If delete by ID fails, try delete by username
-        response = await fetch(`/users/username/${userIdentifier}`, {
+        response = await fetch(`https://localhost:3000/users/username/${userIdentifier}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });

@@ -14,6 +14,7 @@
     "@types/node": "^24.2.1",
     "@types/sqlite3": "^5.1.0",
     "@types/uuid": "^10.0.0",
+    "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
@@ -26,11 +27,12 @@
     "uuid": "^11.1.0"
   },
   "scripts": {
-  "dev": "node dist/backend/server.js",
-  "build:frontend": "tsc -p tsconfig.frontend.json && cp frontend/pages/index.html dist/frontend/pages/ && cp frontend/pages/*.css dist/frontend/pages && cp frontend/pages/*.html dist/frontend/pages && cp -r frontend/assets dist/frontend/ && mkdir -p dist/frontend/pages/services && cp frontend/pages/services/*.js dist/frontend/pages/services/ 2>/dev/null || true && mkdir -p dist/frontend/pages/services/renderGame && cp -r frontend/pages/services/renderGame/* dist/frontend/pages/services/renderGame/ 2>/dev/null || true",
-  "build:backend": "tsc -p tsconfig.backend.json",
-  "build": "npm run build:backend && npm run build:frontend",
-  "clean": "rm -rf dist"
-}
-
+    "dev": "node dist/backend/server.js",
+    "build:css": "npx tailwindcss -i ./frontend/tailwind.css -o ./frontend/pages/tw.generated.css --watch",
+    "build:css-prod": "npx tailwindcss -i ./frontend/tailwind.css -o ./frontend/pages/tw.generated.css --minify",
+    "build:frontend": "npm run build:css-prod && tsc -p tsconfig.frontend.json && cp frontend/pages/*.html dist/frontend/pages/ && cp frontend/pages/*.css dist/frontend/pages/ && cp -r frontend/assets dist/frontend/ 2>/dev/null || true",
+    "build:backend": "tsc -p tsconfig.backend.json",
+    "build": "npm run build:backend && npm run build:frontend",
+    "clean": "rm -rf dist"
+  }
 }
