@@ -52,51 +52,6 @@
   transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Authentication button */
-.auth-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
-    font-family: inherit;
-    font-size: inherit;
-    padding: 0;
-    outline: none;
-}
-
-/* Auth button positioning for different screen sizes */
-
-/* PC (1280px+) */
-@media (min-width: 1280px) {
-    .auth-button {
-        left: calc(50% - 19vw - 100px); /* Circle-6 is 38vw, so radius is 19vw */
-        padding: 0.8vw 2vw;
-        font-size: 1.2vw;
-    }
-}
-
-/* Laptop/Tablet (769px - 1279px) */
-@media (min-width: 769px) and (max-width: 1279px) {
-    .auth-button {
-        left: calc(50% - 15.2vw - 100px); /* Circle-6 is 30.4vw, so radius is 15.2vw */
-        padding: 0.6vw 1.5vw;
-        font-size: 1.1vw;
-    }
-}
-
-/* Mobile (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-    .auth-button {
-        left: calc(50% - 12.35vw - 100px); /* Circle-6 is 24.7vw, so radius is 12.35vw */
-        padding: 0.5vw 1.2vw;
-        font-size: 1vw;
-    }
-}
-
 /* Modal Styles */
 .modal-overlay {
   position: fixed;
