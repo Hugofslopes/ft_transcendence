@@ -4,7 +4,10 @@
  * - PC (Default): 1280px+
  * - Laptop/Tablet: 769px - 1279px  
  * - Mobile: 481px - 768px
- * - Small Mobile: ≤480px
+ * - Small Mobi  .border-vw-5 { border-width: 0.26vw; }
+}
+
+/* Mobile breakpoints (481px - 768px) */
  */
 
 /* Rotation animation keyframes */
@@ -150,16 +153,6 @@
   max-height: 24px;
 }
 
-/* Auth button positioned relative to circle-6 */
-.auth-button {
-  left: calc(50% - 19vw - 120px); /* Circle-6 is 38vw, so radius is 19vw, button 120px to the left */
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  min-width: 80px;
-}
-
 /* Laptop/Tablet breakpoints (769px - 1279px) */
 @media (max-width: 1279px) and (min-width: 769px) {
   .circle-1 { width: 76vw; height: 76vw; }    /* 95vw * 0.8 */
@@ -183,7 +176,8 @@
   
   /* Auth button positioning for laptop/tablet */
   .auth-button {
-    left: calc(50% - 15.2vw - 100px); /* Circle-6 is 30.4vw, so radius is 15.2vw */
+  left: calc(50% - 15.2vw); /* Circle-6 is 30.4vw, so radius is 15.2vw */
+  padding: 0.6vw 1.5vw;
   }
 }
 
@@ -210,9 +204,9 @@
   
   /* Auth button positioning for mobile */
   .auth-button {
-    left: calc(50% - 12.35vw - 80px); /* Circle-6 is 24.7vw, so radius is 12.35vw */
-    font-size: 14px;
-    padding: 8px 16px;
+  left: calc(50% - 12.35vw); /* Circle-6 is 24.7vw, so radius is 12.35vw */
+  font-size: 14px;
+  padding: 0.5vw 1vw;
   }
 }
 

@@ -39,6 +39,9 @@ class SimpleSPA {
             if (this.contentContainer) {
                 this.contentContainer.innerHTML = bodyContent;
                 this.contentContainer.classList.remove('hidden');
+                
+                // Load and execute the pong.js script
+                this.loadScript('./pong.js');
             }
             
         } catch (error) {
@@ -61,6 +64,19 @@ class SimpleSPA {
             `;
             this.contentContainer.classList.remove('hidden');
         }
+    }
+
+    private loadScript(src: string): void {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = src;
+        script.onload = () => {
+            console.log(`Script ${src} loaded successfully`);
+        };
+        script.onerror = () => {
+            console.error(`Failed to load script ${src}`);
+        };
+        document.head.appendChild(script);
     }
 }
 

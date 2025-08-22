@@ -1,4 +1,6 @@
 export function renderAuthModal(showOnly: 'login' | 'register') {
+  console.log("renderAuthModal called with:", showOnly);
+  
   // Utility function to update button visibility after login/register
   const updateButtonVisibility = () => {
     console.log('updateButtonVisibility called from render.ts');
@@ -86,8 +88,12 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
   `;
 
   // Add to body
-
+  console.log("Appending modal to document.body...");
   document.body.appendChild(modalOverlay);
+  console.log("Modal appended. Current body children count:", document.body.children.length);
+  console.log("Modal overlay element:", modalOverlay);
+  console.log("Modal overlay display:", window.getComputedStyle(modalOverlay).display);
+  console.log("Modal overlay visibility:", window.getComputedStyle(modalOverlay).visibility);
 
   // Get elements
   const loginForm = document.getElementById('login-form') as HTMLFormElement;
