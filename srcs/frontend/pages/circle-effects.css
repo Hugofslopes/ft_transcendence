@@ -145,8 +145,8 @@
 
 /* Orbiting circle that follows circle-10 path */
 .orbiting-dot {
-  width: 1.5vw;
-  height: 1.5vw;
+  width: 0.8vw;
+  height: 0.8vw;
   min-width: 12px;
   min-height: 12px;
   max-width: 24px;
@@ -195,7 +195,7 @@
   .auth-button {
     position: absolute;
     top: 50%;
-    left: calc(50% - 23.94vw); /* Circle-6 diameter is 34.2vw, so 0.70 × 34.2vw = 23.94vw */
+    left: calc(50% - 25vw); /* Circle-6 diameter is 34.2vw, so 0.70 × 34.2vw = 23.94vw */
     transform: translateY(-50%);
     background: transparent;
     border: none;
@@ -203,7 +203,7 @@
     cursor: pointer;
     text-decoration: none;
     font-family: inherit;
-    font-size: 1.4vw;
+    font-size: 1.6vw;
     padding: 0.8vw 2vw;
     outline: none;
     z-index: 20;
@@ -235,7 +235,7 @@
   .auth-button {
     position: absolute;
     top: 50%; 
-    left: calc(50% - 21.6vw); /* Circle-6 diameter is 30.4vw, so 0.70 × 30.4vw = 21.28vw */
+    left: calc(50% - 23vw); /* Circle-6 diameter is 30.4vw, so 0.70 × 30.4vw = 21.28vw */
     transform: translateY(-50%);
     background: transparent;
     border: none;
@@ -243,7 +243,7 @@
     cursor: pointer;
     text-decoration: none;
     font-family: inherit;
-    font-size: 1.3vw;
+    font-size: 1.7vw;
     padding: 0.7vw 1.8vw;
     outline: none;
     z-index: 20;
