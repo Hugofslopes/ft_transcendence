@@ -8,7 +8,6 @@
 }
 
 /* Mobile breakpoints (481px - 768px) */
- */
 
 /* Rotation animation keyframes */
 @keyframes spin {
@@ -26,19 +25,38 @@
   }
 }
 
+/* Orbital animation for circumference (slightly adjusted for centering) */
+@keyframes orbit-circumference {
+  from { 
+    transform: rotate(0deg) translateX(9.3vw) rotate(0deg);
+  }
+  to { 
+    transform: rotate(360deg) translateX(9.3vw) rotate(-360deg);
+  }
+}
+
 /* Dotted border style for circles */
 .dotted-border {
   border-style: dotted !important;
 }
 
 /* Slow rotation for decorative circle elements */
-.rotate-slow {
-  animation: spin 4s linear infinite;
+.rotate-inner-slow {
+  animation: spin 16s linear infinite;
+}
+
+.rotate-outter-slow {
+  animation: spin 8s linear infinite;
 }
 
 /* Orbital movement along circle-10 path */
 .orbit-circle-10 {
   animation: orbit 6s linear infinite;
+}
+
+/* Orbital movement for circumference */
+.orbit-circumference {
+  animation: orbit-circumference 6s linear infinite;
 }
 
 /* Fast rotation for loading spinners */
@@ -144,13 +162,17 @@
 }
 
 /* Orbiting circle that follows circle-10 path */
-.orbiting-dot {
-  width: 0.8vw;
-  height: 0.8vw;
+.orbiting-dot1 {
+  width: 0.6vw;
+  height: 0.6vw;
   min-width: 12px;
   min-height: 12px;
-  max-width: 24px;
-  max-height: 24px;
+}
+
+.orbiting-circumference1 {
+  background: transparent;
+  width: 1vw;
+  height: 1vw;
 }
 
 .auth-button {
