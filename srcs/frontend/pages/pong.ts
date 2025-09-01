@@ -3,6 +3,22 @@ import { renderAuthModal } from './services/render.js';
 
 console.log("Loading all buttons");
 
+// Show/hide buttons based on login state
+const loginBtn = document.getElementById('auth-btn');
+const profileBtn = document.getElementById('profile-btn');
+const logoutBtn = document.getElementById('logout-btn');
+if (localStorage.getItem('authToken')) {
+    console.log("User is already logged in");
+    if (loginBtn) loginBtn.style.display = 'none';
+    if (profileBtn) profileBtn.style.display = 'block';
+    if (logoutBtn) logoutBtn.style.display = 'block';
+} else {
+    console.log("User is not logged in");
+    if (loginBtn) loginBtn.style.display = 'block';
+    if (profileBtn) profileBtn.style.display = 'none';
+    if (logoutBtn) logoutBtn.style.display = 'none';
+}
+
 // Authentication state management
 class AuthManager {
     private static readonly TOKEN_KEY = 'auth_token';

@@ -169,7 +169,7 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
     const password = (document.getElementById('login-password') as HTMLInputElement).value;
 
     try {
-      const response = await fetch('https://localhost:3000/login', {
+      const response = await fetch('https://localhost:3000/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -177,18 +177,25 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
 
       if (!response.ok) throw new Error('Login failed');
 
-      const data = await response.json();
-      result.innerText = `✅ Login successful: Welcome ${data.user.name}!`;
+      const result = await response.json();
+      if (result.token) {
+        localStorage.setItem('authToken', result.token);
+        result.innerText = `✅ Login successful: Welcome!`; 
+      } else {
+        result.innerText = `✅ Login Not successful: Bye Bye!`;
+      }
+  
+
       loginForm.reset();
       
       // Update the center text with user's name
       const centerText = document.getElementById('center-text');
-      if (centerText && data.user.name) {
-        centerText.textContent = data.user.name.toUpperCase();
+      if (centerText && result.user.name) {
+        centerText.textContent = result.user.name.toUpperCase();
       }
       
       // Store user data in localStorage for persistence
-      localStorage.setItem('currentUser', JSON.stringify(data.user));
+      localStorage.setItem('currentUser', JSON.stringify(result.user));
       
       // Update button visibility
       updateButtonVisibility();
@@ -220,8 +227,13 @@ export function renderAuthModal(showOnly: 'login' | 'register') {
 
       if (!response.ok) throw new Error('Failed to register');
 
-      const data = await response.json();
-      result.innerText = `✅ Registered successfully! Welcome ${name}!`;
+      const result = await response.json();
+      if (result.token) {
+        localStorage.setItem('authToken', result.token);
+        result.innerText = `✅ Login successful: Welcome!`; 
+      } else {
+        result.innerText = `✅ Login Not successful: Bye Bye!`;
+      }
       registerForm.reset();
       
       // Update the center text with user's name

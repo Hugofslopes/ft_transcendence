@@ -252,7 +252,7 @@
 .logout-button {
   position: absolute;
   top: 50%;
-  left: calc(50% + 26.6vw); /* Circle-6 diameter to the right */
+  left: calc(50% + 19vw); /* Circle-6 diameter to the right */
   transform: translateY(-50%);
   background: transparent;
   border: none;
