@@ -192,6 +192,81 @@
   z-index: 20;
 }
 
+.play-button {
+  position: absolute;
+  top: calc(50% - 21vw); /* Circle-6 radius is 19vw, moved 2vw higher */
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.4vw;
+  padding: 0.8vw 2vw;
+  outline: none;
+  z-index: 20;
+}
+
+/* New button classes for profile, settings, and logout */
+
+/* Profile button */
+.profile-button {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 26.6vw); /* Same position as auth button - left of circle-6 */
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.4vw;
+  padding: 0.8vw 2vw;
+  outline: none;
+  z-index: 20;
+  display: none; /* Hidden by default */
+}
+
+/* Settings button */
+.settings-button {
+  position: absolute;
+  top: calc(50% + 21vw); /* Circle-6 radius below center */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.4vw;
+  padding: 0.8vw 2vw;
+  outline: none;
+  z-index: 20;
+}
+
+/* Logout button */
+.logout-button {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 26.6vw); /* Circle-6 diameter to the right */
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.4vw;
+  padding: 0.8vw 2vw;
+  outline: none;
+  z-index: 20;
+  display: none; /* Hidden by default */
+}
+
 /* Laptop/Tablet breakpoints (769px - 1279px) */
 @media (max-width: 1279px) and (min-width: 769px) {
   .circle-1 { width: 85vw; height: 85vw; }    /* 95vw * 0.9 instead of 0.8 */
@@ -229,6 +304,80 @@
     padding: 0.8vw 2vw;
     outline: none;
     z-index: 20;
+  }
+  
+  /* Play button positioning for laptop/tablet */
+  .play-button {
+    position: absolute;
+    top: calc(50% - 18.8vw); /* Circle-6 radius is 17.1vw, moved ~1.7vw higher */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.6vw;
+    padding: 0.8vw 2vw;
+    outline: none;
+    z-index: 20;
+  }
+  
+  /* Profile button positioning for laptop/tablet */
+  .profile-button {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 25vw); /* Same as auth button */
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.6vw;
+    padding: 0.8vw 2vw;
+    outline: none;
+    z-index: 20;
+    display: none;
+  }
+
+  /* Settings button positioning for laptop/tablet */
+  .settings-button {
+    position: absolute;
+    top: calc(50% + 18.8vw); /* Circle-6 radius below center */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.6vw;
+    padding: 0.8vw 2vw;
+    outline: none;
+    z-index: 20;
+  }
+
+  /* Logout button positioning for laptop/tablet */
+  .logout-button {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 25vw); /* Circle-6 diameter to the right */
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.6vw;
+    padding: 0.8vw 2vw;
+    outline: none;
+    z-index: 20;
+    display: none;
   }
 }
 
@@ -270,6 +419,80 @@
     outline: none;
     z-index: 20;
   }
+  
+  /* Play button positioning for mobile */
+  .play-button {
+    position: absolute;
+    top: calc(50% - 16.8vw); /* Circle-6 radius is 15.2vw, moved ~1.6vw higher */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.7vw;
+    padding: 0.7vw 1.8vw;
+    outline: none;
+    z-index: 20;
+  }
+  
+  /* Profile button positioning for mobile */
+  .profile-button {
+    position: absolute;
+    top: 50%; 
+    left: calc(50% - 23vw); /* Same as auth button */
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.7vw;
+    padding: 0.7vw 1.8vw;
+    outline: none;
+    z-index: 20;
+    display: none;
+  }
+
+  /* Settings button positioning for mobile */
+  .settings-button {
+    position: absolute;
+    top: calc(50% + 16.8vw); /* Circle-6 radius below center */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.7vw;
+    padding: 0.7vw 1.8vw;
+    outline: none;
+    z-index: 20;
+  }
+
+  /* Logout button positioning for mobile */
+  .logout-button {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 23vw); /* Circle-6 diameter to the right */
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.7vw;
+    padding: 0.7vw 1.8vw;
+    outline: none;
+    z-index: 20;
+    display: none;
+  }
 }
 
 /* Small mobile breakpoints (≤480px) - Hide circles for cleaner mobile experience */
@@ -287,7 +510,12 @@
   .circle-10,
   .circle-11,
   .orbiting-dot,
-  .auth-button {
+  .auth-button,
+  .play-button,
+  .profile-button,
+  .settings-button,
+  .logout-button
+  {
     display: none;
   }
   
