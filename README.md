@@ -22,23 +22,22 @@ After the basics of the project our group needed to choose modules to complete t
     <li>Use the Tailwind CSS. </li>
     <li>Use SQLite as designated database. </li>
     <li>Standard user management, authentication and users across tournaments:
-◦ Users can securely subscribe to the website.
-◦ Registered users can securely log in.
-◦ Users can select a unique display name to participate in tournaments.
-◦ Users can update their information.
-◦ Users can upload an avatar, with a default option if none is provided.
-◦ Users can add others as friends and view their online status.
-◦ User profiles display stats, such as wins and losses.
-◦ Each user has a Match History including 1v1 games, dates, and relevant
-details, accessible to logged-in users. </li>
+        <li>◦ Users can securely subscribe to the website.</li>
+        <li>◦ Registered users can securely log in.</li>
+        <li>◦ Users can select a unique display name to participate in tournaments.</li>
+        <li>◦ Users can update their information.</li>
+        <li>◦ Users can upload an avatar, with a default option if none is provided.</li>
+        <li>◦ Users can add others as friends and view their online status.</li>
+        <li>◦ User profiles display stats, such as wins and losses.</li>
+        <li>◦ Each user has a Match History including 1v1 games, dates, and relevant details, accessible to logged-in users.</li>
+    </li>
     <li>Play remotely. Each player is located on a separated computer, accessing the same website and playing the same Pong game. </li>
     <li>User and Game Stats Dashboards. </li>
     <li>Introduce an AI opponent.</li>
-    <li>Implement WAF/ModSecurity with Hardened Configuration and
-HashiCorp Vault for Secrets Management.</li>
+    <li>Implement WAF/ModSecurity with Hardened Configuration and HashiCorp Vault for Secrets Management.</li>
   <li>Support on all devices.
-In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</li>
+        In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</li>
    <li>Expanding Browser Compatibility.
-Enhance the compatibility of the web application by adding support for an additional web browser.</li>
+        Enhance the compatibility of the web application by adding support for an additional web browser.</li>
     <li>Multiple language support.</li>
 </ul>
