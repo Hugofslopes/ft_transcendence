@@ -9,7 +9,10 @@
 </p>
 
 <p>
-    This is the last project of 42 common core. It as the goal to creat a single page web app with game pong.
+    This is the last project of 42 common core. It as the goal to creat a single page web app with game pong. It was
+    made with  <a href="https://github.com/melaniereis" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: white; background-color:rgb(237, 242, 247); text-align: center; text-decoration: none; border-radius: 5px; margin-left: 10px;">Melanie Reis</a>
+    <a href="https://github.com/AfonsoMota-132" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: white; background-color:rgb(237, 242, 247); text-align: center; text-decoration: none; border-radius: 5px; margin-left: 10px;">Afonso Mota</a>
+    <a href="https://github.com/mde-agui" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: white; background-color:rgb(237, 242, 247); text-align: center; text-decoration: none; border-radius: 5px; margin-left: 10px;">Manuel Cardoso</a>
 </p>
 
 <p align="center">
