@@ -17,12 +17,12 @@
 </p>
 
 <p>
-    After the basics of the project our group needed to choose modules to complete the mandatory part. The selected modules were :
+    After the basics of the project our group needed to choose modules to complete the mandatory part. The selected modules were:
 </p>
 
 <ul>
     <li>Use Fastify with Node.js for backend development.</li>
-    <li>Use the Tailwind CSS. </li>
+    <li>Use Tailwind CSS. </li>
     <li>Use SQLite as designated database. </li>
     <li>Standard user management, authentication and users across tournaments:
         <ul>
@@ -41,7 +41,7 @@
     <li>Introduce an AI opponent.</li>
     <li>Implement WAF/ModSecurity with Hardened Configuration and HashiCorp Vault for Secrets Management.</li>
   <li>Support on all devices.
-        In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</li>
+        <p>In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</p></li>
    <li>Expanding Browser Compatibility.
         Enhance the compatibility of the web application by adding support for an additional web browser.</li>
     <li>Multiple language support.</li>
