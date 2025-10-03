@@ -40,9 +40,9 @@
     <li>User and Game Stats Dashboards. </li>
     <li>Introduce an AI opponent.</li>
     <li>Implement WAF/ModSecurity with Hardened Configuration and HashiCorp Vault for Secrets Management.</li>
-  <li>Support on all devices.
-        <p>In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</p></li>
-   <li>Expanding Browser Compatibility.
-        Enhance the compatibility of the web application by adding support for an additional web browser.</li>
+    <li>Support on all devices:
+  In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</li>
+    <li>Expanding Browser Compatibility:
+   Enhance the compatibility of the web application by adding support for an additional web browser.</li>
     <li>Multiple language support.</li>
 </ul>
