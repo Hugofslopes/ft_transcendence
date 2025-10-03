@@ -13,3 +13,32 @@ This is the last project of 42 common core. It as the goal to creat a single pag
 <p align="center">
 <img width="1914" height="957" alt="Image" src="https://github.com/user-attachments/assets/4d2e7dc9-2492-4e5b-b023-3e0a2450b87b" />
 </p>
+
+<p>
+After the basics of the project our group needed to choose modules to complete the mandatory part. The selected modules were :
+</p>
+<ul>
+    <li>Use Fastify with Node.js for backend development.</li>
+    <li>Use the Tailwind CSS. </li>
+    <li>Use SQLite as designated database. </li>
+    <li>Standard user management, authentication and users across tournaments:
+◦ Users can securely subscribe to the website.
+◦ Registered users can securely log in.
+◦ Users can select a unique display name to participate in tournaments.
+◦ Users can update their information.
+◦ Users can upload an avatar, with a default option if none is provided.
+◦ Users can add others as friends and view their online status.
+◦ User profiles display stats, such as wins and losses.
+◦ Each user has a Match History including 1v1 games, dates, and relevant
+details, accessible to logged-in users. </li>
+    <li>Play remotely. Each player is located on a separated computer, accessing the same website and playing the same Pong game. </li>
+    <li>User and Game Stats Dashboards. </li>
+    <li>Introduce an AI opponent.</li>
+    <li>Implement WAF/ModSecurity with Hardened Configuration and
+HashiCorp Vault for Secrets Management.</li>
+  <li>Support on all devices.
+In this module, the main focus is to ensure that the website is responsive, adapting to different screen sizes and orientations, providing a consistent user experience on desktops, laptops, tablets  and smartphones</li>
+   <li>Expanding Browser Compatibility.
+Enhance the compatibility of the web application by adding support for an additional web browser.</li>
+    <li>Multiple language support.</li>
+</ul>
