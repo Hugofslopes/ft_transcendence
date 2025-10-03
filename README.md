@@ -22,6 +22,7 @@ After the basics of the project our group needed to choose modules to complete t
     <li>Use the Tailwind CSS. </li>
     <li>Use SQLite as designated database. </li>
     <li>Standard user management, authentication and users across tournaments:
+        <ul>
         <li>◦ Users can securely subscribe to the website.</li>
         <li>◦ Registered users can securely log in.</li>
         <li>◦ Users can select a unique display name to participate in tournaments.</li>
@@ -30,6 +31,7 @@ After the basics of the project our group needed to choose modules to complete t
         <li>◦ Users can add others as friends and view their online status.</li>
         <li>◦ User profiles display stats, such as wins and losses.</li>
         <li>◦ Each user has a Match History including 1v1 games, dates, and relevant details, accessible to logged-in users.</li>
+        </ul>
     </li>
     <li>Play remotely. Each player is located on a separated computer, accessing the same website and playing the same Pong game. </li>
     <li>User and Game Stats Dashboards. </li>
